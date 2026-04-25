@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dmitrii — Product Designer</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --glass-dark: rgba(0,0,0,0.08);
+      --font:  'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+      --mono:  'Space Mono', 'SF Mono', menlo, monospace;
+      /* Hero gradient — Figma's signature: green → yellow → purple → pink */
+      --hero-gradient: linear-gradient(135deg,
+        #0acf83 0%,
+        #a259ff 35%,
+        #f24e1e 60%,
+        #ff7262 80%,
+        #1abcfe 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.5;
+      font-feature-settings: "kern" 1;
+    }
+
+    /* ─── Wrapper ─── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── Mono label (figmaMono equivalent) ─── */
+    .mono-label {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      color: var(--black);
+      opacity: 0.4;
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    /* ─── Buttons ─── */
+    .btn-black {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 450;
+      letter-spacing: -0.14px;
+      color: var(--white);
+      background: var(--black);
+      text-decoration: none;
+      padding: 10px 22px 11px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn-black:hover { opacity: .80; }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 450;
+      letter-spacing: -0.14px;
+      color: var(--white);
+      background: rgba(255,255,255,0.16);
+      text-decoration: none;
+      padding: 10px 22px 11px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.32);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-white:hover { background: rgba(255,255,255,0.26); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 450;
+      letter-spacing: -0.14px;
+      color: var(--black);
+      background: transparent;
+      text-decoration: none;
+      padding: 10px 22px 11px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,0,0,.08);
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .btn-outline:hover { border-color: var(--black); background: var(--glass-dark); }
+
+    *:focus-visible { outline: 2px dashed var(--black); outline-offset: 3px; }
+
+    /* ══════════════════════════════════════════
+       HERO — gradient section, white text
+    ══════════════════════════════════════════ */
+    .hero {
+      background: var(--white);
+      padding: 48px 0 30px;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .hero-eyebrow-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-meta-link {
+      color: rgba(0,0,0,0.4);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      transition: opacity .12s;
+    }
+    .hero-meta-link:hover { opacity: .45; }
+    .hero-meta-sep { opacity: 0.3; }
+    .hero-bio {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.55;
+      letter-spacing: -0.2px;
+      color: var(--black);
+    }
+    .hero-bio strong {
+      font-weight: 540;
+      color: var(--black);
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      align-self: stretch;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 20px;
+      padding: 16px;
+    }
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.05);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
+    }
+    .hero-cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      text-decoration: none;
+      transition: color .12s;
+      white-space: nowrap;
+    }
+    .hero-cv-link:hover { color: var(--black); }
+    .hero-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .avatar-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .avatar-fallback svg { color: rgba(0,0,0,0.25); }
+    .avatar-fallback span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTENT — strictly black & white
+    ══════════════════════════════════════════ */
+
+    section { padding: 38px 0; }
+    section.sec-exp { padding-bottom: 28px; }
+    section.sec-projects { padding-top: 28px; }
+
+    /* email row in hero — mailto link + copy icon */
+    .email-row {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 50px;
+      border: 1px solid rgba(0,0,0,.08);
+      position: relative;
+    }
+    .email-mailto {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 450;
+      letter-spacing: -0.14px;
+      color: var(--black);
+      text-decoration: none;
+      padding: 10px 16px 11px 20px;
+      transition: opacity .15s;
+    }
+    .email-mailto:hover { opacity: .55; }
+    .email-copy-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: rgba(0,0,0,.4);
+      cursor: pointer;
+      padding: 0 14px 0 4px;
+      height: 100%;
+      min-height: 42px;
+      transition: color .12s;
+    }
+    .email-copy-icon:hover { color: var(--black); }
+    .email-copy-icon.copied { color: var(--black); }
+
+    /* Tooltip */
+    .copy-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      right: 0;
+      transform: translateY(4px);
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s, transform .15s;
+      z-index: 10;
+    }
+    .copy-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 16px;
+      border: 5px solid transparent;
+      border-top-color: var(--black);
+    }
+    .copy-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Experience ─── */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { border-bottom: 1px solid rgba(0,0,0,.08); }
+    .exp-item:first-child { border-top: 1px solid rgba(0,0,0,.08); }
+
+    .exp-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font);
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+    .exp-trigger:hover { opacity: .65; }
+    .exp-item-static .exp-trigger:hover { opacity: 1; }
+
+    .exp-trigger-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+    }
+    .exp-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(0,0,0,.05);
+      border: 1px solid rgba(0,0,0,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+    .exp-logo img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 4px;
+    }
+    .exp-logo::after { content: attr(data-initials); }
+    /* When logo loads — hide border, bg, initials */
+    .exp-logo.has-logo { background: none !important; border-color: transparent !important; color: transparent !important; }
+    .exp-logo.has-logo::after { display: none; }
+    .exp-trigger-text { display: flex; flex-direction: column; gap: 1px; }
+    .exp-company {
+      font-size: 16px;
+      font-weight: 480;
+      letter-spacing: -0.2px;
+      color: var(--black);
+    }
+    .exp-role {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      color: rgba(0,0,0,0.5);
+    }
+    .exp-trigger-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .exp-period {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      color: rgba(0,0,0,0.45);
+      white-space: nowrap;
+    }
+    .exp-chevron {
+      color: rgba(0,0,0,0.3);
+      transition: transform .22s ease;
+      flex-shrink: 0;
+    }
+    .exp-item.open .exp-chevron { transform: rotate(180deg); }
+
+    .exp-body {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .3s ease, opacity .22s ease, padding-bottom .22s ease;
+      padding-bottom: 0;
+    }
+    .exp-item.open .exp-body {
+      max-height: 700px;
+      opacity: 1;
+      padding-bottom: 24px;
+    }
+
+    .exp-summary {
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.6);
+      margin-bottom: 14px;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .exp-bullets li {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      color: rgba(0,0,0,0.55);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: rgba(0,0,0,0.2);
+    }
+
+    /* ─── Projects ─── */
+    .projects-intro {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: -0.14px;
+      color: rgba(0,0,0,0.45);
+      margin-bottom: 24px;
+      margin-top: -16px;
+    }
+
+    /* NDA block — light surface card */
+    .nda-block {
+      background: #0a0a0a;
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 36px;
+      border: none;
+    }
+    .nda-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 12px;
+    }
+    .nda-title {
+      font-size: 20px;
+      font-weight: 480;
+      letter-spacing: -0.26px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .nda-desc {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.45);
+    }
+    .nda-shots {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .nda-shot {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 7px;
+      position: relative;
+      overflow: hidden;
+    }
+    .nda-shot svg { color: rgba(255,255,255,0.22); }
+    .nda-shot-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+    .nda-shot-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .nda-shot-caption {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.45);
+      margin-top: 12px;
+    }
+    .nda-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: inherit;
+      opacity: 0;
+      position: absolute;
+    }
+    .nda-shot.has-img {
+      display: block;
+      padding: 0;
+    }
+    .nda-shot.has-img img {
+      position: static;
+      opacity: 1;
+    }
+    .nda-shot.has-img svg,
+    .nda-shot.has-img .nda-shot-label { display: none; }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .project-card {
+      background: transparent;
+      padding: 0 0 8px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--black);
+      border: none;
+      transition: opacity .12s;
+    }
+    .project-card:hover { opacity: 0.80; }
+    .project-card:last-child:nth-child(odd) { grid-column: span 2; }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: rgba(0,0,0,.05);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .project-thumb svg { opacity: 0.2; }
+    .project-thumb img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      display: none;
+    }
+    .project-thumb.has-img img { display: block; }
+    .project-thumb.has-img > svg,
+    .project-thumb.has-img > .lock-icon { display: none; }
+
+    /* subtle tints that stay B&W */
+    .tint-1,.tint-3,.tint-5,.tint-7,.tint-9,.tint-11 { background: rgba(0,0,0,.04); }
+    .tint-2,.tint-4,.tint-6,.tint-8,.tint-10 { background: rgba(0,0,0,.02); }
+
+    .project-name {
+      font-size: 15px;
+      font-weight: 450;
+      letter-spacing: -0.2px;
+      color: var(--black);
+      line-height: 1.35;
+    }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-top: 2px;
+    }
+    .lock-icon {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+    }
+    .lock-icon svg { opacity: 0.2; }
+    .lock-icon span {
+      font-family: var(--mono);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* ─── Footer — light ─── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding: 36px 0;
+      margin-top: 40px;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-available {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: -0.1px;
+      color: rgba(0,0,0,0.45);
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    /* ─── Sticky header ─── */
+    .sticky-header {
+      position: fixed;
+      top: -64px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-bottom: 1px solid rgba(0,0,0,0.035);
+      transition: top .28s cubic-bezier(.4,0,.2,1), opacity .28s;
+      opacity: 0;
+      will-change: top;
+    }
+    .sticky-header.visible {
+      top: 0;
+      opacity: 1;
+    }
+    .sticky-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .sticky-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,.08);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .sticky-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .sticky-avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0,0,0,0.3);
+    }
+    .sticky-name {
+      font-size: 14px;
+      font-weight: 450;
+      letter-spacing: -0.1px;
+      color: var(--black);
+      flex: 1;
+    }
+    .sticky-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sticky-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 450;
+      letter-spacing: -0.1px;
+      color: var(--white);
+      background: var(--black);
+      text-decoration: none;
+      padding: 7px 16px 8px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .15s;
+      white-space: nowrap;
+    }
+    .sticky-btn:hover { opacity: .82; }
+    .sticky-email-row {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 50px;
+      border: 1px solid rgba(0,0,0,.08);
+      position: relative;
+    }
+    .sticky-email-link {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.1px;
+      color: rgba(0,0,0,.7);
+      text-decoration: none;
+      padding: 7px 4px 8px 16px;
+      transition: color .12s;
+      white-space: nowrap;
+    }
+    .sticky-email-link:hover { color: var(--black); }
+    .sticky-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: rgba(0,0,0,.4);
+      cursor: pointer;
+      padding: 0 12px;
+      height: 34px;
+      transition: color .12s;
+    }
+    .sticky-copy-btn:hover { color: var(--black); }
+    .sticky-copy-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      right: 0;
+      transform: translateY(4px);
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s, transform .15s;
+      z-index: 10;
+    }
+    .sticky-copy-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 14px;
+      border: 5px solid transparent;
+      border-top-color: var(--white);
+    }
+    .sticky-copy-tooltip.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Dark theme ─── */
+    [data-theme="dark"] {
+      --black: #f0f0f0;
+      --white: #0d0d0d;
+      --glass-dark: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] body {
+      background: #0d0d0d;
+      color: #f0f0f0;
+    }
+    [data-theme="dark"] .sticky-header {
+      background: rgba(13,13,13,0.75);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .exp-item,
+    [data-theme="dark"] .exp-item:first-child { border-color: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .exp-logo {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+    }
+    [data-theme="dark"] .hero-photo-col {
+      border-color: rgba(255,255,255,0.08);
+    }
+    [data-theme="dark"] .hero-avatar {
+      border-color: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .email-row {
+      border-color: rgba(255,255,255,0.1);
+    }
+    [data-theme="dark"] .email-mailto { color: #f0f0f0; }
+    [data-theme="dark"] .email-copy-icon { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .email-copy-icon:hover { color: #f0f0f0; }
+    [data-theme="dark"] .btn-black {
+      background: #f0f0f0;
+      color: #0d0d0d;
+    }
+    [data-theme="dark"] .btn-outline {
+      color: #f0f0f0;
+      border-color: rgba(255,255,255,0.12);
+    }
+    [data-theme="dark"] .btn-outline:hover {
+      border-color: #f0f0f0;
+      background: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .hero-bio { color: #f0f0f0; }
+    [data-theme="dark"] .hero-bio strong { color: #f0f0f0; }
+    [data-theme="dark"] .hero-eyebrow { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .hero-meta-link { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .mono-label { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .exp-company { color: #f0f0f0; }
+    [data-theme="dark"] .exp-role { color: rgba(255,255,255,0.5); }
+    [data-theme="dark"] .exp-period { color: rgba(255,255,255,0.45); }
+    [data-theme="dark"] .exp-chevron { color: rgba(255,255,255,0.3); }
+    [data-theme="dark"] .exp-trigger:hover { opacity: .65; }
+    [data-theme="dark"] .exp-summary { color: rgba(255,255,255,0.6); }
+    [data-theme="dark"] .exp-bullets li { color: rgba(255,255,255,0.55); }
+    [data-theme="dark"] .exp-bullets li::before { color: rgba(255,255,255,0.2); }
+    [data-theme="dark"] .project-card { color: #f0f0f0; }
+    [data-theme="dark"] .project-thumb { background: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .tint-1,.tint-3,.tint-5,.tint-7,.tint-9,.tint-11 { background: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .tint-2,.tint-4,.tint-6,.tint-8,.tint-10 { background: rgba(255,255,255,0.03); }
+    [data-theme="dark"] .project-name { color: #f0f0f0; }
+    [data-theme="dark"] .project-tag { color: rgba(255,255,255,0.35); }
+    [data-theme="dark"] .projects-intro { color: rgba(255,255,255,0.45); }
+    [data-theme="dark"] footer {
+      background: #0d0d0d;
+      border-top-color: rgba(255,255,255,0.08);
+    }
+    [data-theme="dark"] .footer-available { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .footer-links a { color: rgba(255,255,255,0.45); }
+    [data-theme="dark"] .footer-links a:hover { color: #f0f0f0; }
+    [data-theme="dark"] .sticky-name { color: #f0f0f0; }
+    [data-theme="dark"] .sticky-btn {
+      background: #f0f0f0;
+      color: #0d0d0d;
+    }
+    [data-theme="dark"] .sticky-email-row { border-color: rgba(255,255,255,0.1); }
+    [data-theme="dark"] .sticky-email-link { color: rgba(255,255,255,0.7); }
+    [data-theme="dark"] .sticky-copy-btn { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .sticky-copy-btn:hover { color: #f0f0f0; }
+    [data-theme="dark"] .copy-tooltip { background: #f0f0f0; color: #0d0d0d; }
+    [data-theme="dark"] .copy-tooltip::after { border-top-color: #f0f0f0; }
+    [data-theme="dark"] .hero-cv-link { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .hero-cv-link:hover { color: #f0f0f0; }
+
+    /* Sun icon — theme-toggle cursor */
+    .sun-toggle {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .2s ease;
+    }
+    .sun-toggle:hover { transform: scale(1.15); }
+    .sun-toggle:active { transform: scale(0.95); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 680px) {
+      .hero-inner, .wrap { padding: 0 20px; }
+      .hero { padding: 48px 0 40px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+      .hero-photo-col { order: -1; margin-top: 0; flex-direction: row; align-items: center; gap: 16px; }
+      .hero-avatar { width: 72px; height: 72px; }
+      .hero-cv-link { margin-left: 0; }
+      section { padding: 32px 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:last-child:nth-child(odd) { grid-column: auto; }
+      .nda-shots { grid-template-columns: 1fr; }
+      .exp-trigger-right { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+
+      /* Sticky header — mobile */
+      .sticky-name { display: none; }
+      .sticky-inner { padding: 0 20px; gap: 12px; }
+      .sticky-actions { margin-left: auto; }
+
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ STICKY HEADER ══ -->
+  <header class="sticky-header" id="stickyHeader">
+    <div class="sticky-inner">
+      <a href="index.html" class="sticky-avatar" style="cursor:pointer;">
+        <img src="photo.jpg" alt="Dmitrii"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="sticky-avatar-fallback" style="display:none;">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6"/></svg>
+        </div>
+      </a>
+      <span class="sticky-name">Dmitrii</span>
+      <div class="sticky-actions">
+        <a href="https://t.me/near_anyone" target="_blank" class="sticky-btn">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          Text me
+        </a>
+        <span class="sticky-email-row">
+          <a href="mailto:weerdmolls@gmail.com" class="sticky-email-link">weerdmolls@gmail.com</a>
+          <button class="sticky-copy-btn" onclick="stickyCopy(this)">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+          <span class="sticky-copy-tooltip">Copied</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ HERO — gradient ══ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-left">
+            <button class="sun-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <style>
+                    @keyframes sun-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                    .sun-rays { animation: sun-spin 5s linear infinite; transform-origin: 50px 50px; }
+                  </style>
+                </defs>
+                <!-- Rotating rays group -->
+                <g class="sun-rays">
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(45,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(90,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(135,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(180,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(225,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(270,50,50)"/>
+                  <polygon points="50,6 54,22 46,22" fill="#FB8C00" transform="rotate(315,50,50)"/>
+                </g>
+                <!-- Center circle -->
+                <circle cx="50" cy="50" r="20" fill="#FB8C00"/>
+              </svg>
+            </button>
+            <span>SE Asia</span>
+            <span class="hero-meta-sep">·</span>
+            <span id="bkk-time"></span>
+          </div>
+        </div>
+        <p class="hero-bio">
+          Hi! I'm <strong>Dmitrii</strong> — product designer with 9 years of experience building design systems, improving UX in CRMs, and crafting visual ecosystems for SaaS products
+        </p>
+        <div class="hero-actions">
+          <a href="https://t.me/near_anyone" target="_blank" class="btn-black">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Text me
+          </a>
+          <span class="email-row">
+            <a href="mailto:weerdmolls@gmail.com" class="email-mailto">weerdmolls@gmail.com</a>
+            <button class="email-copy-icon" onclick="copyEmail(this)">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+            <span class="copy-tooltip">Copied</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-photo-col">
+        <div class="hero-avatar">
+          <img src="photo.jpg" alt="Dmitrii"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="avatar-fallback">
+            <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/>
+              <path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6"/>
+            </svg>
+            <span>photo.jpg</span>
+          </div>
+        </div>
+        <a href="https://www.linkedin.com/in/kovalev-dmitry/" target="_blank" class="hero-cv-link">
+          <span class="hero-meta-sep">·</span>
+          LinkedIn
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ══ WORK EXPERIENCE ══ -->
+    <section class="sec-exp">
+      <span class="mono-label">Work Experience</span>
+      <div class="exp-list">
+
+        <div class="exp-item exp-item-static">
+          <div class="exp-trigger" style="cursor:default;">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="01">
+                <img src="logo-01tech.webp" alt="01.tech" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">01.tech</span>
+                <span class="exp-role">Senior Product Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Jan 2025 – Present</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="IR">
+                <img src="logo-irev.webp" alt="IREV" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">IREV</span>
+                <span class="exp-role">Lead Product Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Oct 2019 – Jun 2024</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Worked on developing and maintaining internal design systems to improve user experience and streamline workflows.</p>
+            <ul class="exp-bullets">
+              <li>Created a unified design system for internal CRM platforms.</li>
+              <li>Analyzed user behavior to optimize workflows and product usability.</li>
+              <li>Standardized UI components for consistency across products.</li>
+              <li>Managed a team of designers, improving processes with Scrum methodologies.</li>
+              <li>Updated project documentation to simplify collaboration with developers.</li>
+              <li>Prepared presentations to communicate design updates to stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="qm">
+                <img src="logo-qmobi.webp" alt="qmobi" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">qmobi</span>
+                <span class="exp-role">UX/UI Designer, Product Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Aug 2017 – Apr 2018</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Full-time position. Development of CMS product concepts and company product interfaces.</p>
+            <ul class="exp-bullets">
+              <li>Designed a CMS product for Facebook to streamline asset management for advertising creatives.</li>
+              <li>Implemented features for creative assembly and moderation to enhance workflow efficiency.</li>
+              <li>Improved user interfaces for company products, ensuring usability and consistency.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="QW" style="background:#fff8e1;border-color:#ffe082;color:#b07800;">
+                <img src="logo-qiwi.webp" alt="QIWI" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">QIWI Ltd</span>
+                <span class="exp-role">UX/UI Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Feb 2017 – Apr 2017</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Project work. Experimental development of interface concepts. Implementation of successful solutions into the product's current interfaces.</p>
+            <ul class="exp-bullets">
+              <li>Developed and tested interface concepts to improve usability and design.</li>
+              <li>Implemented successful solutions into existing product interfaces.</li>
+              <li>Designed application concepts for A/B testing to optimize online banking patterns.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="OL">
+                <img src="logo-optionlift.webp" alt="Optionlift" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">Optionlift</span>
+                <span class="exp-role">UI Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Aug 2016 – Apr 2017</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Project work focused on designing and developing corporate websites and a CRM system for broker brands.</p>
+            <ul class="exp-bullets">
+              <li>Designed and developed corporate websites for broker brands, including custom branding and logo creation.</li>
+              <li>Created a CRM system for managing trading platforms, focusing on usability and efficiency.</li>
+              <li>Worked on enhancing user experience and visual consistency across web projects.</li>
+              <li>Collaborated with a remote team in a virtual office environment to deliver high-quality designs on time.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="GW" style="background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32;">
+                <img src="logo-goodwork.webp" alt="Goodwork" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">Goodwork</span>
+                <span class="exp-role">UX/UI Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">May 2014 – Apr 2015</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Full-time position. Designing and developing websites for local businesses, including major clients like Gazprom's regional office.</p>
+            <ul class="exp-bullets">
+              <li>Created logos, brand identities, landing pages, and website redesigns tailored to client needs.</li>
+              <li>Prototyped interfaces and workflows in Axure to ensure usability and functionality.</li>
+              <li>Provided design consulting and guided clients through the design process.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="in">
+                <img src="logo-inogroup.webp" alt="inogroup" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">inogroup</span>
+                <span class="exp-role">Graphic / Print Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Nov 2011 – Feb 2012</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <p class="exp-summary">Full-time position. Designed printed materials for the company and corporate clients within established brand guidelines.</p>
+            <ul class="exp-bullets">
+              <li>Created layouts for flyers, banners, calendars, business cards, and other promotional materials.</li>
+              <li>Developed designs aligned with corporate identity standards for both in-house and client projects.</li>
+              <li>Delivered high-quality print-ready files, ensuring consistency and attention to detail.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ PROJECTS ══ -->
+    <section class="sec-projects">
+      <span class="mono-label">Featured Products &amp; Projects</span>
+
+      <div class="nda-block" style="display:none;">
+        <div class="nda-title">Cohort Analysis &amp; Rotation Control</div>
+        <div class="nda-shots">
+          <div class="nda-shot-wrap">
+            <div class="nda-shot">
+              <img src="proj-cohort.webp" alt="Cohort Analysis"
+                onload="this.parentElement.classList.add('has-img')"
+                onerror="this.style.display='none';">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
+              <span class="nda-shot-label">Cohort Analysis</span>
+            </div>
+            <p class="nda-shot-caption">Cohort analysis segments users, tracks metrics, and visualizes dynamics, helping to optimize traffic and campaigns.</p>
+          </div>
+          <div class="nda-shot-wrap">
+            <div class="nda-shot">
+              <img src="proj-rotation.webp" alt="Rotation Control"
+                onload="this.parentElement.classList.add('has-img')"
+                onerror="this.style.display='none';">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M6 6h12M6 10h8M6 14h10M6 18h6"/></svg>
+              <span class="nda-shot-label">Rotation Control</span>
+            </div>
+            <p class="nda-shot-caption">Rotation Control helps manage and prioritize traffic distribution efficiently across affiliate campaigns.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <a class="project-card" href="projects/trade-scope/">
+          <div class="project-thumb tint-1"><img src="proj-trade-scope.webp" alt="Trade Scope Platform" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M8 21h8M12 17v4"/></svg></div>
+          <div><div class="project-name">Trade Scope Platform</div><div class="project-tag">Fintech · Mobile + Web</div></div>
+        </a>
+        <a class="project-card" href="projects/brokerage-crm/">
+          <div class="project-thumb tint-2"><img src="proj-brokerage-crm.webp" alt="Brokerage CRM" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M7 8h10M7 12h6"/></svg></div>
+          <div><div class="project-name">Brokerage CRM</div><div class="project-tag">Fintech · Dashboard</div></div>
+        </a>
+        <a class="project-card" href="projects/my-path/">
+          <div class="project-thumb tint-3"><img src="proj-my-path.webp" alt="My Path Platform" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M9 6h6M9 10h4"/></svg></div>
+          <div><div class="project-name">My Path Platform</div><div class="project-tag">EdTech · Mobile App</div></div>
+        </a>
+        <a class="project-card" href="projects/control-panel/">
+          <div class="project-thumb tint-4"><img src="proj-control-panel.webp" alt="Control Panel Payment" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M8 12h8M12 9v6"/></svg></div>
+          <div><div class="project-name">Control Panel Payment</div><div class="project-tag">Fintech · Admin Panel</div></div>
+        </a>
+        <a class="project-card" href="projects/irev-website/index.html">
+          <div class="project-thumb tint-5"><img src="proj-irev-website.webp" alt="IREV Products Website" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" d="M8 21h8M12 17v4"/></svg></div>
+          <div><div class="project-name">IREV Products Website</div><div class="project-tag">Fintech · Web</div></div>
+        </a>
+        <a class="project-card" href="projects/flowforge/">
+          <div class="project-thumb tint-6"><img src="proj-flowforge.webp" alt="FlowForge" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <div><div class="project-name">FlowForge</div><div class="project-tag">SaaS · Workflow Tool</div></div>
+        </a>
+        <a class="project-card" href="projects/organix/">
+          <div class="project-thumb tint-7"><img src="proj-organix.webp" alt="Organix Landing Kit 2019" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none';"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="2" y="4" width="9" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><rect x="13" y="4" width="9" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/></svg></div>
+          <div><div class="project-name">Organix Landing Kit 2019</div><div class="project-tag">E-commerce · Landing</div></div>
+        </a>
+      </div>
+    </section>
+
+  </div><!-- /wrap -->
+
+  <!-- ══ FOOTER — dark ══ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-available">Available for a new project ⚡</span>
+        <div class="footer-links">
+          <a href="https://t.me/near_anyone" target="_blank">Telegram</a>
+          <a href="https://www.behance.net/kohalov" target="_blank">Behance</a>
+          <a href="mailto:weerdmolls@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/kovalev-dmitry/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── Theme toggle ─── */
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    function toggle(btn) {
+      btn.closest('.exp-item').classList.toggle('open');
+    }
+
+    /* Sticky header on scroll */
+    const stickyHeader = document.getElementById('stickyHeader');
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        stickyHeader.classList.add('visible');
+      } else {
+        stickyHeader.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    /* Sticky header copy — swap to checkmark icon, no tooltip */
+    const copyIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`;
+    const checkIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12l6 6L20 6"/></svg>`;
+    function stickyCopy(btn) {
+      navigator.clipboard.writeText('weerdmolls@gmail.com').then(() => {
+        btn.innerHTML = checkIconSvg;
+        btn.style.color = 'var(--black)';
+        setTimeout(() => {
+          btn.innerHTML = copyIconSvg;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    /* Bangkok clock — UTC+7 */
+    function updateBkkTime() {
+      const now = new Date();
+      const bkk = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
+      const h = String(bkk.getHours()).padStart(2, '0');
+      const m = String(bkk.getMinutes()).padStart(2, '0');
+      const el = document.getElementById('bkk-time');
+      if (el) el.textContent = h + ':' + m + ' local · GMT+7';
+    }
+    updateBkkTime();
+    setInterval(updateBkkTime, 30000);
+
+    /* Copy email to clipboard */
+    function copyEmail(btn) {
+      navigator.clipboard.writeText('weerdmolls@gmail.com').then(() => {
+        const tooltip = btn.closest('.email-row').querySelector('.copy-tooltip');
+        if (tooltip) tooltip.classList.add('visible');
+        setTimeout(() => {
+          if (tooltip) tooltip.classList.remove('visible');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
