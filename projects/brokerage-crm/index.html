@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brokerage CRM — Dmitrii</title>
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; }
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+    /* ─── Sticky header ─── */
+    .sticky-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-bottom: 1px solid rgba(0,0,0,0.035);
+    }
+    .sticky-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 40px;
+      height: 56px; display: flex; align-items: center; gap: 16px;
+    }
+    .sticky-avatar {
+      width: 32px; height: 32px; border-radius: 50%; overflow: hidden;
+      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0; position: relative;
+    }
+    .sticky-avatar img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .sticky-avatar-fallback {
+      width: 100%; height: 100%; display: flex;
+      align-items: center; justify-content: center; color: rgba(0,0,0,0.3);
+    }
+    .sticky-name { font-size: 14px; font-weight: 450; letter-spacing: -0.1px; color: var(--black); flex: 1; }
+    .sticky-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .sticky-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font); font-size: 13px; font-weight: 450;
+      color: var(--white); background: var(--black);
+      text-decoration: none; padding: 7px 16px 8px; border-radius: 50px;
+      border: none; cursor: pointer; transition: opacity .15s;
+    }
+    .sticky-btn:hover { opacity: .80; }
+    .sticky-email-row {
+      display: inline-flex; align-items: center;
+      border-radius: 50px; border: 1px solid rgba(0,0,0,.18); position: relative;
+    }
+    .sticky-email-link {
+      font-size: 13px; font-weight: 300; color: rgba(0,0,0,0.7);
+      text-decoration: none; padding: 7px 10px 7px 16px;
+    }
+    .sticky-copy-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; background: none; border: none;
+      cursor: pointer; color: rgba(0,0,0,0.4); border-radius: 50px; transition: color .12s;
+    }
+    .sticky-copy-btn:hover { color: var(--black); }
+    .sticky-copy-tooltip {
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%); background: var(--black);
+      color: var(--white); font-size: 11px; padding: 4px 8px;
+      border-radius: 4px; white-space: nowrap; pointer-events: none;
+      opacity: 0; transition: opacity .15s;
+    }
+    .sticky-copy-tooltip.visible { opacity: 1; }
+
+    .page-body { padding-top: 80px; padding-bottom: 0; }
+
+    /* ─── Back link ─── */
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px;
+      text-transform: uppercase; color: rgba(0,0,0,0.38);
+      text-decoration: none; transition: color .12s; margin-bottom: 32px;
+    }
+    .proj-back:hover { color: var(--black); }
+
+    /* ─── Project header ─── */
+    .proj-header { margin-bottom: 28px; }
+    .proj-tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.54px;
+      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      margin-bottom: 12px; display: block;
+    }
+    .proj-title {
+      font-size: 36px; font-weight: 520; letter-spacing: -0.5px;
+      line-height: 1.15; margin-bottom: 0;
+    }
+
+    /* ─── Image block (auto height) ─── */
+    .proj-img {
+      width: 100%; border-radius: 10px; overflow: hidden;
+      background: rgba(0,0,0,.04); margin-bottom: 8px;
+    }
+    .proj-img img { width: 100%; height: auto; display: block; }
+    .proj-img-placeholder {
+      min-height: 280px; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 8px;
+    }
+    .proj-img-placeholder span {
+      font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.5px; color: rgba(0,0,0,0.22);
+    }
+    .proj-img-placeholder svg { color: rgba(0,0,0,0.15); }
+
+    /* ─── Caption ─── */
+    .proj-caption {
+      font-size: 13px; font-weight: 300; color: rgba(0,0,0,0.38);
+      font-family: var(--mono); letter-spacing: 0.3px; line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* ─── Section heading ─── */
+    .proj-section-title {
+      font-size: 22px; font-weight: 500; letter-spacing: -0.3px;
+      color: var(--black); margin-bottom: 10px; margin-top: 32px;
+    }
+
+    /* ─── Body text ─── */
+    .proj-text {
+      font-size: 16px; font-weight: 300; line-height: 1.75;
+      color: rgba(0,0,0,0.6); max-width: 720px; margin-bottom: 24px;
+    }
+
+    /* ─── Numbered goals list ─── */
+    .proj-goals {
+      list-style: none; display: flex; flex-direction: column; gap: 7px;
+      margin-bottom: 24px;
+    }
+    .proj-goals li {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .proj-goals-num {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px;
+      color: rgba(0,0,0,0.25); padding-top: 3px; flex-shrink: 0; width: 20px;
+    }
+    .proj-goals-text {
+      font-size: 15px; font-weight: 300; line-height: 1.65; color: rgba(0,0,0,0.65);
+    }
+    .proj-goals-text strong {
+      font-weight: 500; color: var(--black);
+    }
+
+    /* ─── Spacer ─── */
+    .proj-spacer { height: 24px; }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--white); border-top: 1px solid rgba(0,0,0,.08);
+      padding: 36px 0; margin-top: 32px;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 14px;
+    }
+    .footer-available {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.4px;
+      text-transform: uppercase; color: rgba(0,0,0,0.4);
+    }
+    .footer-links { display: flex; align-items: center; gap: 20px; }
+    .footer-links a {
+      font-size: 13px; font-weight: 300; color: rgba(0,0,0,0.45);
+      text-decoration: none; transition: color .12s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    @media (max-width: 680px) {
+      .wrap { padding: 0 20px; }
+      .sticky-inner { padding: 0 20px; gap: 10px; }
+      .sticky-name { display: none; }
+      .sticky-actions { margin-left: auto; }
+      .proj-title { font-size: 26px; }
+      .proj-section-title { font-size: 18px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky header -->
+  <header class="sticky-header">
+    <div class="sticky-inner">
+      <a href="../../index.html" class="sticky-avatar" style="cursor:pointer;">
+        <img src="../../photo.jpg" alt="Dmitrii"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="sticky-avatar-fallback" style="display:none;">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6"/></svg>
+        </div>
+      </a>
+      <span class="sticky-name">Dmitrii</span>
+      <div class="sticky-actions">
+        <a href="https://t.me/near_anyone" target="_blank" class="sticky-btn">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          Text me
+        </a>
+        <span class="sticky-email-row">
+          <a href="mailto:weerdmolls@gmail.com" class="sticky-email-link">weerdmolls@gmail.com</a>
+          <button class="sticky-copy-btn" onclick="stickyCopy(this)">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+          <span class="sticky-copy-tooltip">Copied</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="wrap">
+
+      <a href="../../index.html" class="proj-back">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+        Back to portfolio
+      </a>
+
+      <header class="proj-header">
+        <span class="proj-tag">Fintech · Web</span>
+        <h1 class="proj-title">Brokerage CRM</h1>
+      </header>
+
+      <!-- img-1 -->
+      <div class="proj-img">
+        <img src="img-1.webp" alt="Brokerage CRM"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-1.webp</span>
+        </div>
+      </div>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Goals -->
+      <h2 class="proj-section-title">Goals of the CRM</h2>
+      <ol class="proj-goals">
+        <li>
+          <span class="proj-goals-num">01</span>
+          <span class="proj-goals-text"><strong>Financial Overview:</strong> Provides a detailed dashboard with metrics like net deposits, withdrawals, chargebacks, and total turnover for real-time financial tracking.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">02</span>
+          <span class="proj-goals-text"><strong>Performance Analytics:</strong> Offers visualized trends and data (e.g., charts for installations and performance over time) for monitoring business growth and operational efficiency.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">03</span>
+          <span class="proj-goals-text"><strong>Ticket Management:</strong> Tracks and manages customer tickets with detailed insights into issues, resolutions, and associated data.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">04</span>
+          <span class="proj-goals-text"><strong>Comprehensive Reporting:</strong> Includes tools for generating and sending reports, enabling informed decision-making.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">05</span>
+          <span class="proj-goals-text"><strong>Customer and Trader Management:</strong> Facilitates streamlined interaction with customers and traders via dedicated sections.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">06</span>
+          <span class="proj-goals-text"><strong>Integration and Traffic Tracking:</strong> Supports external traffic analysis and management for better campaign optimization.</span>
+        </li>
+        <li>
+          <span class="proj-goals-num">07</span>
+          <span class="proj-goals-text"><strong>Knowledge and Support Access:</strong> Provides a knowledge center for training and resolving common user issues.</span>
+        </li>
+      </ol>
+
+      <p class="proj-text">This CRM is built around lead tables and modal windows for their configuration, providing a functional and efficient interface. In this project, I will showcase only the most interesting and key screens of the system. The following screenshots highlight the essential features that demonstrate the platform's capabilities and user benefits.</p>
+
+      <!-- img-2 -->
+      <div class="proj-img">
+        <img src="img-2.webp" alt="Brokerage CRM"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-2.webp</span>
+        </div>
+      </div>
+
+      <!-- img-3 -->
+      <div class="proj-img">
+        <img src="img-3.webp" alt="Brokerage CRM"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-3.webp</span>
+        </div>
+      </div>
+
+      <!-- img-4 -->
+      <div class="proj-img">
+        <img src="img-4.webp" alt="Brokerage CRM"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-4.webp</span>
+        </div>
+      </div>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Sign In -->
+      <h2 class="proj-section-title">Sign In</h2>
+
+      <!-- img-5 -->
+      <div class="proj-img">
+        <img src="img-5.webp" alt="Sign In"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-5.webp</span>
+        </div>
+      </div>
+
+      <!-- Key Metrics Panel -->
+      <h2 class="proj-section-title">Key Metrics Panel</h2>
+
+      <!-- img-6 -->
+      <div class="proj-img">
+        <img src="img-6.webp" alt="Key Metrics Panel"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-6.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Displays key financial indicators such as Net Deposits, Total Withdrawals, Chargebacks, and Turnover. Highlights changes since the last login, helping users quickly gauge performance.</p>
+
+      <!-- Dashboard Overview -->
+      <h2 class="proj-section-title">Dashboard Overview</h2>
+
+      <!-- img-7 -->
+      <div class="proj-img">
+        <img src="img-7.webp" alt="Dashboard Overview"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-7.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Provides a comprehensive snapshot of financial activity, including net deposits, total withdrawals, chargebacks, and total turnover. Interactive graphs visualize trends over time, and ticket details offer actionable insights for further analysis.</p>
+
+      <!-- img-8 -->
+      <div class="proj-img">
+        <img src="img-8.webp" alt="Dashboard Overview"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-8.webp</span>
+        </div>
+      </div>
+
+      <div class="proj-spacer"></div>
+
+      <!-- CRM Settings Overview -->
+      <h2 class="proj-section-title">CRM Settings Overview</h2>
+
+      <!-- img-9 -->
+      <div class="proj-img">
+        <img src="img-9.webp" alt="CRM Settings Overview"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-9.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Centralized hub for managing key configurations, including currency and payment methods, validation statuses, document types, and sales communication workflows.</p>
+
+      <!-- Customers Area — Traders Overview -->
+      <h2 class="proj-section-title">Customers Area — Traders Overview</h2>
+
+      <!-- img-10 -->
+      <div class="proj-img">
+        <img src="img-10.webp" alt="Traders Overview"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-10.webp</span>
+        </div>
+      </div>
+
+      <!-- Trader Profile — Detailed View -->
+      <h2 class="proj-section-title">Trader Profile — Detailed View</h2>
+
+      <!-- img-11 -->
+      <div class="proj-img">
+        <img src="img-11.webp" alt="Trader Profile"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-11.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A comprehensive profile page for individual traders showcasing financial information, basic details, and trading activity. Includes quick actions like creating wallets, deposit/withdrawal tickets, and adding bonuses for seamless account management.</p>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Trader Relations -->
+      <h2 class="proj-section-title">Trader Relations</h2>
+
+      <!-- img-12 -->
+      <div class="proj-img">
+        <img src="img-12.webp" alt="Trader Relations"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-12.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A streamlined interface for managing trader communication. Displays a list of ongoing conversations with traders, highlighting unread messages and allowing direct message exchange with quick reply functionality.</p>
+
+      <!-- Traders Communications Table -->
+      <h2 class="proj-section-title">Traders Communications Table</h2>
+
+      <!-- img-13 -->
+      <div class="proj-img">
+        <img src="img-13.webp" alt="Traders Communications Table"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-13.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A structured overview of communication records with traders, including transaction details, reasons, comments, and balances. Designed for monitoring and analyzing trader interactions efficiently.</p>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Reporting -->
+      <h2 class="proj-section-title">Reporting</h2>
+
+      <!-- img-14 -->
+      <div class="proj-img">
+        <img src="img-14.webp" alt="Reporting"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-14.webp</span>
+        </div>
+      </div>
+
+      <!-- img-15 -->
+      <div class="proj-img">
+        <img src="img-15.webp" alt="Reporting"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-15.webp</span>
+        </div>
+      </div>
+
+      <!-- img-16 -->
+      <div class="proj-img">
+        <img src="img-16.webp" alt="Reporting"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-16.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">An intuitive interface for generating custom reports. Allows grouping by key parameters like sale status and affiliate ID, selecting intervals, and visualizing data in various formats, including tables, JSON, line charts, and pie charts.</p>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Management -->
+      <h2 class="proj-section-title">Management</h2>
+
+      <!-- img-17 -->
+      <div class="proj-img">
+        <img src="img-17.webp" alt="Management"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-17.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A centralized database of CRM employees with detailed information, including activity logs, comments, and financial summaries. Features tools for creating new entries and filtering existing ones for efficient management.</p>
+
+      <!-- Employee Profile -->
+      <h2 class="proj-section-title">Employee Profile</h2>
+
+      <!-- img-18 -->
+      <div class="proj-img">
+        <img src="img-18.webp" alt="Employee Profile"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-18.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Comprehensive profile view of an employee, displaying personal details, wallet summaries, and activity breakdowns across various segments like campaigns and platforms. Includes quick access to editing tools and detailed transaction previews.</p>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Access Control -->
+      <h2 class="proj-section-title">Access Control</h2>
+
+      <!-- img-19 -->
+      <div class="proj-img">
+        <img src="img-19.webp" alt="Access Control"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-19.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A detailed permission management interface for user roles, allowing administrators to configure access to specific pages, commands, and widgets. Includes an overview of granted permissions and a structured layout for traffic control and visibility settings.</p>
+
+      <!-- CRM Tools: Email Templates & Task Manager -->
+      <h2 class="proj-section-title">CRM Tools: Email Templates &amp; Task Manager</h2>
+
+      <!-- img-20 -->
+      <div class="proj-img">
+        <img src="img-20.webp" alt="Email Templates"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-20.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">An intuitive editor for creating and managing email templates. Users can customize emails by adding and sorting blocks like headers, buttons, logos, and images. The interface also provides multilingual support and version control for efficient template management.</p>
+
+      <!-- Task Manager -->
+      <h2 class="proj-section-title">Task Manager</h2>
+
+      <!-- img-21 -->
+      <div class="proj-img">
+        <img src="img-21.webp" alt="Task Manager"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-21.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">A Kanban-style task management tool enabling users to organize and track tasks across "To Do," "Doing," and "Done" columns. Users can add new cards, edit existing ones, and create custom columns to tailor workflows to their needs.</p>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-available">Available for a new project ⚡</span>
+        <div class="footer-links">
+          <a href="https://t.me/near_anyone" target="_blank">Telegram</a>
+          <a href="https://www.behance.net/kohalov" target="_blank">Behance</a>
+          <a href="mailto:weerdmolls@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/kovalev-dmitry/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const copyIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`;
+    const checkIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12l6 6L20 6"/></svg>`;
+    function stickyCopy(btn) {
+      navigator.clipboard.writeText('weerdmolls@gmail.com').then(() => {
+        btn.innerHTML = checkIconSvg;
+        setTimeout(() => { btn.innerHTML = copyIconSvg; }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
