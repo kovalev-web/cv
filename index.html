@@ -1313,7 +1313,12 @@
     /* ─── Theme toggle ─── */
     (function() {
       const saved = localStorage.getItem('theme');
-      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      if (!saved) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
     })();
 
     function toggleTheme() {
