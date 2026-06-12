@@ -1155,23 +1155,6 @@
   </footer>
 
   <script>
-    /* ─── Theme toggle ─── */
-    if (!localStorage.getItem('theme')) {
-      localStorage.setItem('theme', 'dark');
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-
     function toggle(btn) {
       btn.closest('.exp-item').classList.toggle('open');
     }
@@ -1187,20 +1170,6 @@
         stickyHeader.classList.remove('visible');
       }
     }, { passive: true });
-
-    /* Sticky header copy — swap to checkmark icon, no tooltip */
-    const copyIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`;
-    const checkIconSvg = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12l6 6L20 6"/></svg>`;
-    function stickyCopy(btn) {
-      navigator.clipboard.writeText('weerdmolls@gmail.com').then(() => {
-        btn.innerHTML = checkIconSvg;
-        btn.style.color = 'var(--black)';
-        setTimeout(() => {
-          btn.innerHTML = copyIconSvg;
-          btn.style.color = '';
-        }, 2000);
-      });
-    }
 
     /* Bangkok clock — UTC+7 */
     function updateBkkTime() {
@@ -1225,5 +1194,6 @@
       });
     }
   </script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
