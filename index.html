@@ -11,16 +11,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --black: #000000;
       --white: #ffffff;
       --glass-dark: rgba(0,0,0,0.08);
       --font:  'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
       --mono:  'Space Mono', 'SF Mono', menlo, monospace;
-      /* Hero gradient — Figma's signature: green → yellow → purple → pink */
+      
       --hero-gradient: linear-gradient(135deg,
         #0acf83 0%,
         #a259ff 35%,
@@ -28,10 +27,6 @@
         #ff7262 80%,
         #1abcfe 100%);
     }
-
-    html { scroll-behavior: smooth; }
-    a { text-decoration: none; }
-
     body {
       font-family: var(--font);
       background: var(--white);
@@ -41,15 +36,6 @@
       line-height: 1.5;
       font-feature-settings: "kern" 1;
     }
-
-    /* ─── Wrapper ─── */
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    /* ─── Mono label (figmaMono equivalent) ─── */
     .mono-label {
       font-family: var(--mono);
       font-size: 13px;
@@ -61,8 +47,6 @@
       margin-bottom: 28px;
       display: block;
     }
-
-    /* ─── Buttons ─── */
     .btn-black {
       display: inline-flex;
       align-items: center;
@@ -81,7 +65,6 @@
       transition: opacity .15s;
     }
     .btn-black:hover { opacity: .80; }
-
     .btn-white {
       display: inline-flex;
       align-items: center;
@@ -100,7 +83,6 @@
       transition: background .15s;
     }
     .btn-white:hover { background: rgba(255,255,255,0.26); }
-
     .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -119,12 +101,7 @@
       transition: border-color .15s, background .15s;
     }
     .btn-outline:hover { border-color: var(--black); background: var(--glass-dark); }
-
     *:focus-visible { outline: 2px dashed var(--black); outline-offset: 3px; }
-
-    /* ══════════════════════════════════════════
-       HERO — gradient section, white text
-    ══════════════════════════════════════════ */
     .hero {
       background: var(--white);
       padding: 48px 0 30px;
@@ -252,16 +229,9 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-
-    /* ══════════════════════════════════════════
-       CONTENT — strictly black & white
-    ══════════════════════════════════════════ */
-
     section { padding: 38px 0; }
     section.sec-exp { padding-bottom: 28px; }
     section.sec-projects { padding-top: 28px; }
-
-    /* email row in hero — mailto link + copy icon */
     .email-row {
       display: inline-flex;
       align-items: center;
@@ -298,8 +268,6 @@
     }
     .email-copy-icon:hover { color: var(--black); }
     .email-copy-icon.copied { color: var(--black); }
-
-    /* Tooltip */
     .copy-tooltip {
       position: absolute;
       bottom: calc(100% + 10px);
@@ -331,12 +299,9 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* ─── Experience ─── */
     .exp-list { display: flex; flex-direction: column; }
     .exp-item { border-bottom: 1px solid rgba(0,0,0,.08); }
     .exp-item:first-child { border-top: 1px solid rgba(0,0,0,.08); }
-
     .exp-trigger {
       width: 100%;
       display: flex;
@@ -354,7 +319,6 @@
     }
     .exp-trigger:hover { opacity: .65; }
     .exp-item-static .exp-trigger:hover { opacity: 1; }
-
     .exp-trigger-left {
       display: flex;
       flex-direction: row;
@@ -386,7 +350,6 @@
       padding: 4px;
     }
     .exp-logo::after { content: attr(data-initials); }
-    /* When logo loads — hide border, bg, initials */
     .exp-logo.has-logo { background: none !important; border-color: transparent !important; color: transparent !important; }
     .exp-logo.has-logo::after { display: none; }
     .exp-trigger-text { display: flex; flex-direction: column; gap: 1px; }
@@ -422,7 +385,6 @@
       flex-shrink: 0;
     }
     .exp-item.open .exp-chevron { transform: rotate(180deg); }
-
     .exp-body {
       overflow: hidden;
       max-height: 0;
@@ -435,7 +397,6 @@
       opacity: 1;
       padding-bottom: 24px;
     }
-
     .exp-summary {
       font-size: 15px;
       font-weight: 300;
@@ -465,8 +426,6 @@
       left: 0;
       color: rgba(0,0,0,0.2);
     }
-
-    /* ─── Projects ─── */
     .projects-intro {
       font-size: 16px;
       font-weight: 300;
@@ -475,8 +434,6 @@
       margin-bottom: 24px;
       margin-top: -16px;
     }
-
-    /* NDA block — light surface card */
     .nda-block {
       background: #0a0a0a;
       color: var(--white);
@@ -565,8 +522,6 @@
     }
     .nda-shot.has-img svg,
     .nda-shot.has-img .nda-shot-label { display: none; }
-
-    /* Projects grid */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -587,7 +542,6 @@
     }
     .project-card:hover { opacity: 0.80; }
     .project-card:last-child:nth-child(odd) { grid-column: span 2; }
-
     .project-thumb {
       width: 100%;
       aspect-ratio: 16/10;
@@ -610,11 +564,8 @@
     .project-thumb.has-img img { display: block; }
     .project-thumb.has-img > svg,
     .project-thumb.has-img > .lock-icon { display: none; }
-
-    /* subtle tints that stay B&W */
     .tint-1,.tint-3,.tint-5,.tint-7,.tint-9,.tint-11 { background: rgba(0,0,0,.04); }
     .tint-2,.tint-4,.tint-6,.tint-8,.tint-10 { background: rgba(0,0,0,.02); }
-
     .project-name {
       font-size: 15px;
       font-weight: 450;
@@ -641,44 +592,6 @@
       letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(0,0,0,0.3);
     }
-
-    /* ─── Footer — light ─── */
-    footer {
-      background: var(--white);
-      border-top: 1px solid rgba(0,0,0,.08);
-      padding: 36px 0;
-      margin-top: 40px;
-    }
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .footer-available {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.4);
-    }
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: -0.1px;
-      color: rgba(0,0,0,0.45);
-      text-decoration: none;
-      transition: color .12s;
-    }
-    .footer-links a:hover { color: var(--black); }
-
-    /* ─── Sticky header ─── */
     .sticky-header {
       position: fixed;
       top: -64px;
@@ -697,15 +610,6 @@
       top: 0;
       opacity: 1;
     }
-    .sticky-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 40px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
     .sticky-avatar {
       width: 32px;
       height: 32px;
@@ -715,29 +619,6 @@
       border: 1px solid rgba(0,0,0,.08);
       flex-shrink: 0;
       position: relative;
-    }
-    .sticky-avatar img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .sticky-avatar-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(0,0,0,0.3);
-    }
-    .sticky-name {
-      font-size: 14px;
-      font-weight: 450;
-      letter-spacing: -0.1px;
-      color: var(--black);
-      flex: 1;
     }
     .sticky-actions {
       display: flex;
@@ -794,7 +675,6 @@
       height: 34px;
       transition: color .12s;
     }
-    .sticky-copy-btn:hover { color: var(--black); }
     .sticky-copy-tooltip {
       position: absolute;
       bottom: calc(100% + 8px);
@@ -823,20 +703,10 @@
       border-top-color: var(--white);
     }
     .sticky-copy-tooltip.visible { opacity: 1; transform: translateY(0); }
-
-    /* ─── Dark theme ─── */
     [data-theme="dark"] {
       --black: #f0f0f0;
       --white: #0d0d0d;
       --glass-dark: rgba(255,255,255,0.06);
-    }
-    [data-theme="dark"] body {
-      background: #0d0d0d;
-      color: #f0f0f0;
-    }
-    [data-theme="dark"] .sticky-header {
-      background: rgba(13,13,13,0.75);
-      border-bottom-color: rgba(255,255,255,0.06);
     }
     [data-theme="dark"] .exp-item,
     [data-theme="dark"] .exp-item:first-child { border-color: rgba(255,255,255,0.08); }
@@ -889,28 +759,10 @@
     [data-theme="dark"] .project-name { color: #f0f0f0; }
     [data-theme="dark"] .project-tag { color: rgba(255,255,255,0.35); }
     [data-theme="dark"] .projects-intro { color: rgba(255,255,255,0.45); }
-    [data-theme="dark"] footer {
-      background: #0d0d0d;
-      border-top-color: rgba(255,255,255,0.08);
-    }
-    [data-theme="dark"] .footer-available { color: rgba(255,255,255,0.4); }
-    [data-theme="dark"] .footer-links a { color: rgba(255,255,255,0.45); }
-    [data-theme="dark"] .footer-links a:hover { color: #f0f0f0; }
-    [data-theme="dark"] .sticky-name { color: #f0f0f0; }
-    [data-theme="dark"] .sticky-btn {
-      background: #f0f0f0;
-      color: #0d0d0d;
-    }
-    [data-theme="dark"] .sticky-email-row { border-color: rgba(255,255,255,0.1); }
-    [data-theme="dark"] .sticky-email-link { color: rgba(255,255,255,0.7); }
-    [data-theme="dark"] .sticky-copy-btn { color: rgba(255,255,255,0.4); }
-    [data-theme="dark"] .sticky-copy-btn:hover { color: #f0f0f0; }
     [data-theme="dark"] .copy-tooltip { background: #f0f0f0; color: #0d0d0d; }
     [data-theme="dark"] .copy-tooltip::after { border-top-color: #f0f0f0; }
     [data-theme="dark"] .hero-cv-link { color: rgba(255,255,255,0.4); }
     [data-theme="dark"] .hero-cv-link:hover { color: #f0f0f0; }
-
-    /* Sun icon — theme-toggle cursor */
     .sun-toggle {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -918,8 +770,6 @@
     }
     .sun-toggle:hover { transform: scale(1.15); }
     .sun-toggle:active { transform: scale(0.95); }
-
-    /* ─── Responsive ─── */
     @media (max-width: 680px) {
       .hero-inner, .wrap { padding: 0 20px; }
       .hero { padding: 48px 0 40px; }
@@ -932,13 +782,7 @@
       .project-card:last-child:nth-child(odd) { grid-column: auto; }
       .nda-shots { grid-template-columns: 1fr; }
       .exp-trigger-right { display: none; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-
-      /* Sticky header — mobile */
-      .sticky-name { display: none; }
       .sticky-inner { padding: 0 20px; gap: 12px; }
-      .sticky-actions { margin-left: auto; }
-
     }
   </style>
 </head>
