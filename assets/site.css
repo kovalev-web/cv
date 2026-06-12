@@ -67,7 +67,7 @@
     .sticky-copy-btn {
       display: flex; align-items: center; justify-content: center;
       width: 32px; height: 32px; background: none; border: none;
-      cursor: pointer; color: rgba(0,0,0,0.4); border-radius: 50px;
+      cursor: pointer; color: rgba(0,0,0,0.6); border-radius: 50px;
       transition: color .12s; flex-shrink: 0;
     }
     .sticky-copy-btn:hover { color: var(--black); }
@@ -87,7 +87,7 @@
     .proj-back {
       display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px;
-      text-transform: uppercase; color: rgba(0,0,0,0.38);
+      text-transform: uppercase; color: rgba(0,0,0,0.6);
       text-decoration: none; transition: color .12s; margin-bottom: 28px;
     }
     .proj-back:hover { color: var(--black); }
@@ -96,7 +96,7 @@
     .proj-header { margin-bottom: 48px; }
     .proj-tag {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.54px;
-      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      text-transform: uppercase; color: rgba(0,0,0,0.6);
       margin-bottom: 12px; display: block;
     }
     .proj-title {
@@ -127,7 +127,7 @@
     .proj-section { margin-bottom: 64px; }
     .proj-section-label {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.54px;
-      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      text-transform: uppercase; color: rgba(0,0,0,0.6);
       margin-bottom: 20px; display: block;
     }
     .proj-text {
@@ -147,7 +147,7 @@
     }
     .proj-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .proj-caption {
-      font-size: 12px; font-weight: 300; color: rgba(0,0,0,0.35);
+      font-size: 12px; font-weight: 300; color: rgba(0,0,0,0.6);
       margin-top: 10px; font-family: var(--mono); letter-spacing: 0.3px;
     }
 
@@ -162,12 +162,12 @@
     }
     .footer-available {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.4px;
-      text-transform: uppercase; color: rgba(0,0,0,0.4);
+      text-transform: uppercase; color: rgba(0,0,0,0.6);
     }
     .footer-links { display: flex; align-items: center; gap: 20px; }
     .footer-links a {
       font-size: 13px; font-weight: 300; letter-spacing: -0.1px;
-      color: rgba(0,0,0,0.45); text-decoration: none; transition: color .12s;
+      color: rgba(0,0,0,0.6); text-decoration: none; transition: color .12s;
     }
     .footer-links a:hover { color: var(--black); }
 
@@ -189,20 +189,20 @@
     [data-theme="dark"] .sticky-btn { background: #f0f0f0; color: #0d0d0d; }
     [data-theme="dark"] .sticky-email-row { border-color: rgba(255,255,255,0.1); }
     [data-theme="dark"] .sticky-email-link { color: rgba(255,255,255,0.7); }
-    [data-theme="dark"] .sticky-copy-btn { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .sticky-copy-btn { color: rgba(255,255,255,0.6); }
     [data-theme="dark"] .sticky-copy-btn:hover { color: #f0f0f0; }
     [data-theme="dark"] .sticky-copy-tooltip { background: #f0f0f0; color: #0d0d0d; }
-    [data-theme="dark"] .proj-back { color: rgba(255,255,255,0.38); }
+    [data-theme="dark"] .proj-back { color: rgba(255,255,255,0.6); }
     [data-theme="dark"] .proj-back:hover { color: #f0f0f0; }
-    [data-theme="dark"] .proj-tag { color: rgba(255,255,255,0.35); }
+    [data-theme="dark"] .proj-tag { color: rgba(255,255,255,0.6); }
     [data-theme="dark"] .proj-title { color: #f0f0f0; }
     [data-theme="dark"] .proj-img { background: rgba(255,255,255,0.05); }
     [data-theme="dark"] .proj-img-placeholder span { color: rgba(255,255,255,0.22); }
     [data-theme="dark"] .proj-img-placeholder svg { color: rgba(255,255,255,0.15); }
     [data-theme="dark"] .proj-section-title { color: #f0f0f0; }
     [data-theme="dark"] .proj-text { color: rgba(255,255,255,0.6); }
-    [data-theme="dark"] .proj-caption { color: rgba(255,255,255,0.38); }
+    [data-theme="dark"] .proj-caption { color: rgba(255,255,255,0.6); }
     [data-theme="dark"] footer { background: #0d0d0d; border-top-color: rgba(255,255,255,0.08); }
-    [data-theme="dark"] .footer-available { color: rgba(255,255,255,0.4); }
-    [data-theme="dark"] .footer-links a { color: rgba(255,255,255,0.45); }
+    [data-theme="dark"] .footer-available { color: rgba(255,255,255,0.6); }
+    [data-theme="dark"] .footer-links a { color: rgba(255,255,255,0.6); }
     [data-theme="dark"] .footer-links a:hover { color: #f0f0f0; }
