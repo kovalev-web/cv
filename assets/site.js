@@ -14,15 +14,9 @@ function stickyCopy(btn) {
 }
 
 /* ─── Theme ─── */
-(function() {
-  const saved = localStorage.getItem('theme');
-  if (!saved) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else if (saved === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-})();
+if (!localStorage.getItem('theme')) {
+  localStorage.setItem('theme', 'dark');
+}
 function toggleTheme() {
   const html = document.documentElement;
   const current = html.getAttribute('data-theme');
