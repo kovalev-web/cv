@@ -834,6 +834,9 @@
       object-position: top left;
       display: block;
     }
+    .side-card-thumb .thumb-dark { display: none; }
+    [data-theme="dark"] .side-card-thumb .thumb-light { display: none; }
+    [data-theme="dark"] .side-card-thumb .thumb-dark { display: block; }
     .sun-toggle {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -992,9 +995,8 @@
           </span>
         </div>
         <div class="side-card-thumb">
-          <img src="proj-questtick.jpg" alt="Questtick — Altcoin Pump Monitor"
-            width="1772" height="1548" decoding="async" loading="lazy"
-            onerror="this.parentElement.style.background='#1a1a1a';">
+          <img class="thumb-light" src="proj-questtick-light.jpg" alt="Questtick — Altcoin Pump Monitor" width="768" height="706" decoding="async" loading="lazy">
+          <img class="thumb-dark" src="proj-questtick-dark.jpg" alt="Questtick — Altcoin Pump Monitor" width="768" height="706" decoding="async" loading="lazy">
         </div>
       </a>
     </section>
