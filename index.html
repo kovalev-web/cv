@@ -777,11 +777,15 @@
     [data-theme="dark"] .avatar-fallback svg { color: rgba(255,255,255,0.25); }
     [data-theme="dark"] .avatar-fallback span { color: rgba(255,255,255,0.3); }
     [data-theme="dark"] .lock-icon span { color: rgba(255,255,255,0.3); }
+    [data-theme="dark"] .side-card { background: #0a0a0a; border-color: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .side-card-tag { color: rgba(255,255,255,0.35); }
+    [data-theme="dark"] .side-card-link { color: rgba(255,255,255,0.5); }
     .side-card {
       display: flex;
       align-items: stretch;
-      background: #0a0a0a;
-      border-radius: 16px;
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 20px;
       overflow: hidden;
       text-decoration: none;
       transition: opacity .15s;
@@ -801,21 +805,21 @@
       font-weight: 540;
       letter-spacing: -0.4px;
       line-height: 1.15;
-      color: #fff;
+      color: var(--black);
     }
     .side-card-tag {
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(0,0,0,0.4);
     }
     .side-card-link {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(0,0,0,0.55);
       display: flex;
       align-items: center;
       gap: 5px;
