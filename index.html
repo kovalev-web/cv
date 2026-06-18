@@ -837,6 +837,13 @@
     .side-card-thumb .thumb-dark { display: none; }
     [data-theme="dark"] .side-card-thumb .thumb-light { display: none; }
     [data-theme="dark"] .side-card-thumb .thumb-dark { display: block; }
+    @media (max-width: 680px) {
+      .side-card { flex-direction: column; height: auto; }
+      .side-card-thumb { order: 0; width: 100%; height: 200px; }
+      .side-card-thumb img { object-fit: cover; object-position: top center; }
+      .side-card-body { order: 1; flex: none; flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 20px; gap: 12px; }
+      .side-card-meta { gap: 3px; }
+    }
     .sun-toggle {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
