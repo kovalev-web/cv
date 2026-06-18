@@ -1016,8 +1016,8 @@
       <span class="mono-label">Work Experience</span>
       <div class="exp-list">
 
-        <div class="exp-item exp-item-static">
-          <div class="exp-trigger" style="cursor:default;">
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
             <div class="exp-trigger-left">
               <div class="exp-logo" data-initials="01">
                 <img src="logo-01tech.webp" alt="01.tech" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none';" decoding="async">
@@ -1029,7 +1029,38 @@
             </div>
             <div class="exp-trigger-right">
               <span class="exp-period">Jun 2025 – May 2026</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
             </div>
+          </button>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Designed features end-to-end — discovery, user flows, Figma specs, and developer handoff</li>
+              <li>Contributed to and maintained the internal design system across 3 product surfaces</li>
+              <li>Partnered with PMs and engineers in sprint cycles; led design reviews and established documentation standards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-trigger" onclick="toggle(this)">
+            <div class="exp-trigger-left">
+              <div class="exp-logo" data-initials="PS">
+              </div>
+              <div class="exp-trigger-text">
+                <span class="exp-company">Proscom</span>
+                <span class="exp-role">Senior Product Designer</span>
+              </div>
+            </div>
+            <div class="exp-trigger-right">
+              <span class="exp-period">Jan 2025 – Jul 2025</span>
+              <span class="exp-chevron"><svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+          </button>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Designed product features for an education platform end-to-end — discovery, user flows, Figma specs, and developer handoff</li>
+              <li>Designed interfaces for an investment product — onboarding, dashboards, and key user flows</li>
+            </ul>
           </div>
         </div>
 
