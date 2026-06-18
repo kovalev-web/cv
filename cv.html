@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dmitrii Kovalev — Senior Product Designer — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --rule: #d8d8d8;
+    --accent: #0a66c2;
+    --font: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+    --mono: 'Space Mono', 'SF Mono', menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: var(--font);
+    color: var(--ink);
+    background: #fff;
+    font-size: 10pt;
+    line-height: 1.28;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 26px 48px;
+  }
+
+  /* ── Header ── */
+  header.cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 14px;
+  }
+  .cv-name { font-size: 22pt; font-weight: 700; letter-spacing: -0.3px; }
+  .cv-title {
+    font-family: var(--mono);
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .cv-contact {
+    text-align: right;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .cv-contact a { color: var(--ink); text-decoration: none; }
+  .cv-contact a:hover { text-decoration: underline; }
+  .cv-contact .sep { color: var(--rule); }
+
+  /* ── Summary ── */
+  .cv-summary {
+    font-size: 10.5pt;
+    color: #333;
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+
+  /* ── Sections ── */
+  section { margin-bottom: 9px; }
+  section:last-child { margin-bottom: 0; }
+  .cv-section-title {
+    font-family: var(--mono);
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  /* ── Experience ── */
+  .exp-entry { margin-bottom: 6px; break-inside: avoid; }
+  .exp-entry:last-child { margin-bottom: 0; }
+  .exp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .exp-role-line { font-weight: 600; font-size: 10.5pt; }
+  .exp-company { font-weight: 400; color: var(--muted); }
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .exp-summary {
+    font-size: 9.5pt;
+    color: #444;
+    margin: 3px 0 4px;
+  }
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+    font-size: 9.5pt;
+    color: #333;
+  }
+  .exp-bullets li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 1px;
+  }
+  .exp-bullets li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 32px;
+    font-size: 9.5pt;
+  }
+  .skills-grid dt {
+    font-weight: 600;
+    display: inline;
+  }
+  .skills-grid dd {
+    display: inline;
+    color: #444;
+    margin: 0;
+  }
+  .skills-grid div { margin-bottom: 2px; }
+
+  /* ── Projects ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .project-entry {
+    font-size: 9.5pt;
+    break-inside: avoid;
+  }
+  .project-entry .pname { font-weight: 600; }
+  .project-entry .ptag {
+    font-family: var(--mono);
+    font-size: 8.5pt;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    display: block;
+    margin-top: 1px;
+  }
+  .project-entry .pdesc {
+    color: #444;
+    margin-top: 2px;
+  }
+
+  /* ── Print ── */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    body { font-size: 9.2pt; line-height: 1.22; }
+    .page { padding: 11mm 14mm; max-width: none; }
+    a { color: var(--ink) !important; }
+    .cv-contact a { text-decoration: none; }
+  }
+</style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <div class="page">
+
+    <header class="cv-header">
+      <div>
+        <div class="cv-name">Dmitrii Kovalev</div>
+        <div class="cv-title">Senior Product Designer</div>
+      </div>
+      <div class="cv-contact">
+        <div><a href="mailto:weerdmolls@gmail.com">weerdmolls@gmail.com</a></div>
+        <div><a href="https://www.linkedin.com/in/kovalev-dmitry/">linkedin.com/in/kovalev-dmitry</a></div>
+        <div><a href="https://www.behance.net/kohalov">behance.net/kohalov</a></div>
+        <div><a href="https://t.me/near_anyone">t.me/near_anyone</a> <span class="sep">·</span> SE Asia (GMT+7)</div>
+      </div>
+    </header>
+
+    <p class="cv-summary">
+      Product designer with 9 years of experience building design systems, improving UX in CRMs,
+      and crafting visual ecosystems for SaaS products across fintech, edtech and affiliate marketing.
+    </p>
+
+    <section>
+      <div class="cv-section-title">Experience</div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">Senior Product Designer <span class="exp-company">— 01.tech</span></div>
+          <div class="exp-period">Jun 2025 – May 2026</div>
+        </div>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">Lead Product Designer <span class="exp-company">— IREV</span></div>
+          <div class="exp-period">Oct 2019 – Jun 2024</div>
+        </div>
+        <p class="exp-summary">Developed and maintained internal design systems to improve user experience and streamline workflows.</p>
+        <ul class="exp-bullets">
+          <li>Created a unified design system for internal CRM platforms</li>
+          <li>Analyzed user behavior to optimize workflows and product usability</li>
+          <li>Standardized UI components for consistency across products</li>
+          <li>Managed a team of designers, improving processes with Scrum methodologies</li>
+          <li>Updated project documentation to simplify collaboration with developers</li>
+          <li>Prepared presentations to communicate design updates to stakeholders</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">UX/UI Designer, Product Designer <span class="exp-company">— qmobi</span></div>
+          <div class="exp-period">Aug 2017 – Apr 2018</div>
+        </div>
+        <p class="exp-summary">Development of CMS product concepts and company product interfaces.</p>
+        <ul class="exp-bullets">
+          <li>Designed a CMS product for Facebook to streamline asset management for advertising creatives</li>
+          <li>Implemented features for creative assembly and moderation to enhance workflow efficiency</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">UX/UI Designer <span class="exp-company">— QIWI Ltd</span></div>
+          <div class="exp-period">Feb 2017 – Apr 2017</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed and tested interface concepts to improve usability and design, implementing successful solutions into production</li>
+          <li>Designed application concepts for A/B testing to optimize online banking patterns</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">UI Designer <span class="exp-company">— Optionlift</span></div>
+          <div class="exp-period">Aug 2016 – Apr 2017</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and developed corporate websites for broker brands, including custom branding and logo creation</li>
+          <li>Created a CRM system for managing trading platforms, focusing on usability and efficiency</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">UX/UI Designer <span class="exp-company">— Goodwork</span></div>
+          <div class="exp-period">May 2014 – Apr 2015</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Created logos, brand identities, landing pages, and website redesigns for local businesses, including Gazprom's regional office</li>
+          <li>Prototyped interfaces and workflows in Axure to ensure usability and functionality</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-row">
+          <div class="exp-role-line">Graphic / Print Designer <span class="exp-company">— inogroup</span></div>
+          <div class="exp-period">Nov 2011 – Feb 2012</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed flyers, banners, calendars, business cards, and other promotional materials aligned with corporate identity standards</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="cv-section-title">Skills &amp; Tools</div>
+      <div class="skills-grid">
+        <div><dt>Design</dt> <dd>UX/UI Design, Design Systems, Prototyping, Wireframing, Visual Design</dd></div>
+        <div><dt>Tools</dt> <dd>Figma, Sketch, Axure</dd></div>
+        <div><dt>Domains</dt> <dd>Fintech, CRM/SaaS, EdTech, Affiliate Marketing</dd></div>
+        <div><dt>Process</dt> <dd>Scrum, Stakeholder Communication, Team Leadership</dd></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="cv-section-title">Selected Projects</div>
+      <div class="projects-grid">
+        <div class="project-entry">
+          <span class="pname">Trade Scope Platform</span>
+          <span class="ptag">Fintech · Mobile + Web</span>
+          <p class="pdesc">Portfolio management CRM with data integration and analytics.</p>
+        </div>
+        <div class="project-entry">
+          <span class="pname">Brokerage CRM</span>
+          <span class="ptag">Fintech · Dashboard</span>
+          <p class="pdesc">Lead management CRM built around configurable tables and modal workflows.</p>
+        </div>
+        <div class="project-entry">
+          <span class="pname">My Path Platform</span>
+          <span class="ptag">EdTech · Mobile App</span>
+          <p class="pdesc">Corporate onboarding and training platform integrated with internal workflows.</p>
+        </div>
+        <div class="project-entry">
+          <span class="pname">Control Panel Payment</span>
+          <span class="ptag">Fintech · Admin Panel</span>
+          <p class="pdesc">Admin panel for managing payments, configuration, and operational controls.</p>
+        </div>
+        <div class="project-entry">
+          <span class="pname">IREV Products Website</span>
+          <span class="ptag">Fintech · Web</span>
+          <p class="pdesc">Marketing website for IREV's product suite.</p>
+        </div>
+        <div class="project-entry">
+          <span class="pname">FlowForge</span>
+          <span class="ptag">SaaS · Workflow Tool</span>
+          <p class="pdesc">Workflow automation and ad campaign management for SaaS teams.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
