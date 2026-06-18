@@ -22,13 +22,13 @@
     color: var(--ink);
     background: #fff;
     font-size: 10pt;
-    line-height: 1.28;
+    line-height: 1.35;
     -webkit-font-smoothing: antialiased;
   }
   .page {
     max-width: 800px;
     margin: 0 auto;
-    padding: 26px 48px;
+    padding: 32px 52px;
   }
 
   /* ── Header ── */
@@ -37,9 +37,9 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 24px;
-    padding-bottom: 12px;
+    padding-bottom: 14px;
     border-bottom: 2px solid var(--ink);
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .cv-name { font-size: 22pt; font-weight: 700; letter-spacing: -0.3px; }
   .cv-title {
@@ -48,12 +48,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--muted);
-    margin-top: 4px;
+    margin-top: 5px;
   }
   .cv-contact {
     text-align: right;
     font-size: 9.5pt;
-    line-height: 1.5;
+    line-height: 1.65;
     white-space: nowrap;
   }
   .cv-contact a { color: var(--ink); text-decoration: none; }
@@ -64,12 +64,13 @@
   .cv-summary {
     font-size: 10.5pt;
     color: #333;
-    margin-bottom: 16px;
+    line-height: 1.55;
+    margin-bottom: 22px;
     max-width: 680px;
   }
 
   /* ── Sections ── */
-  section { margin-bottom: 9px; }
+  section { margin-bottom: 18px; }
   section:last-child { margin-bottom: 0; }
   .cv-section-title {
     font-family: var(--mono);
@@ -79,12 +80,12 @@
     letter-spacing: 1.5px;
     color: var(--ink);
     border-bottom: 1px solid var(--rule);
-    padding-bottom: 4px;
-    margin-bottom: 8px;
+    padding-bottom: 5px;
+    margin-bottom: 12px;
   }
 
   /* ── Experience ── */
-  .exp-entry { margin-bottom: 6px; break-inside: avoid; }
+  .exp-entry { margin-bottom: 12px; break-inside: avoid; }
   .exp-entry:last-child { margin-bottom: 0; }
   .exp-row {
     display: flex;
@@ -104,18 +105,20 @@
   .exp-summary {
     font-size: 9.5pt;
     color: #444;
-    margin: 3px 0 4px;
+    margin: 4px 0 5px;
   }
   .exp-bullets {
     list-style: none;
     padding: 0;
     font-size: 9.5pt;
     color: #333;
+    margin-top: 4px;
   }
   .exp-bullets li {
     position: relative;
     padding-left: 14px;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
+    line-height: 1.4;
   }
   .exp-bullets li::before {
     content: "—";
@@ -128,58 +131,23 @@
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px 32px;
+    gap: 8px 32px;
     font-size: 9.5pt;
   }
-  .skills-grid dt {
-    font-weight: 600;
-    display: inline;
-  }
-  .skills-grid dd {
-    display: inline;
-    color: #444;
-    margin: 0;
-  }
-  .skills-grid div { margin-bottom: 2px; }
-
-  /* ── Projects ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px 24px;
-  }
-  .project-entry {
-    font-size: 9.5pt;
-    break-inside: avoid;
-  }
-  .project-entry .pname { font-weight: 600; }
-  .project-entry .ptag {
-    font-family: var(--mono);
-    font-size: 8.5pt;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    display: block;
-    margin-top: 1px;
-  }
-  .project-entry .pdesc {
-    color: #444;
-    margin-top: 2px;
-  }
+  .skills-grid dt { font-weight: 600; display: inline; }
+  .skills-grid dd { display: inline; color: #444; margin: 0; }
 
   /* ── Print ── */
-  @page {
-    size: A4;
-    margin: 0;
-  }
+  @page { size: A4; margin: 0; }
   @media print {
-    body { font-size: 8.6pt; line-height: 1.17; }
-    .page { padding: 9mm 13mm; max-width: none; }
-    section { margin-bottom: 6px; }
-    .exp-entry { margin-bottom: 3px; }
-    .exp-bullets li { margin-bottom: 0; }
-    .projects-grid { grid-template-columns: 1fr 1fr 1fr; gap: 5px 16px; }
-    .project-entry { break-inside: avoid; }
+    body { font-size: 8.7pt; line-height: 1.22; }
+    .page { padding: 10mm 14mm; max-width: none; }
+    section { margin-bottom: 10px; }
+    .cv-summary { margin-bottom: 14px; }
+    .cv-section-title { margin-bottom: 8px; padding-bottom: 4px; }
+    .exp-entry { margin-bottom: 6px; }
+    .exp-bullets { margin-top: 2px; }
+    .exp-bullets li { margin-bottom: 1px; line-height: 1.32; }
     a { color: var(--ink) !important; }
     .cv-contact a { text-decoration: none; }
   }
@@ -303,41 +271,6 @@
       </div>
     </section>
 
-    <section>
-      <div class="cv-section-title">Selected Projects</div>
-      <div class="projects-grid">
-        <div class="project-entry">
-          <span class="pname">Trade Scope Platform</span>
-          <span class="ptag">Fintech · Mobile + Web</span>
-          <p class="pdesc">Portfolio management CRM with data integration and analytics.</p>
-        </div>
-        <div class="project-entry">
-          <span class="pname">Brokerage CRM</span>
-          <span class="ptag">Fintech · Dashboard</span>
-          <p class="pdesc">Lead management CRM built around configurable tables and modal workflows.</p>
-        </div>
-        <div class="project-entry">
-          <span class="pname">My Path Platform</span>
-          <span class="ptag">EdTech · Mobile App</span>
-          <p class="pdesc">Corporate onboarding and training platform integrated with internal workflows.</p>
-        </div>
-        <div class="project-entry">
-          <span class="pname">Control Panel Payment</span>
-          <span class="ptag">Fintech · Admin Panel</span>
-          <p class="pdesc">Admin panel for managing payments, configuration, and operational controls.</p>
-        </div>
-        <div class="project-entry">
-          <span class="pname">IREV Products Website</span>
-          <span class="ptag">Fintech · Web</span>
-          <p class="pdesc">Marketing website for IREV's product suite.</p>
-        </div>
-        <div class="project-entry">
-          <span class="pname">FlowForge</span>
-          <span class="ptag">SaaS · Workflow Tool</span>
-          <p class="pdesc">Workflow automation and ad campaign management for SaaS teams.</p>
-        </div>
-      </div>
-    </section>
 
   </div>
 </body>
