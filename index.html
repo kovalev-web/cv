@@ -28,6 +28,7 @@
     :root {
       --black: #000000;
       --white: #ffffff;
+      --gap: 56px;
       --glass-dark: rgba(0,0,0,0.08);
       --font:  'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
       --mono:  'Space Mono', 'SF Mono', menlo, monospace;
@@ -116,7 +117,7 @@
     *:focus-visible { outline: 2px dashed var(--black); outline-offset: 3px; }
     .hero {
       background: var(--white);
-      padding: 48px 0 30px;
+      padding: 48px 0 0;
     }
     .hero-inner {
       max-width: 900px;
@@ -241,9 +242,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-    section { padding: 38px 0; }
-    section.sec-exp { padding-bottom: 28px; }
-    section.sec-projects { padding-top: 28px; }
+    section { padding: var(--gap) 0 0; }
     .email-row {
       display: inline-flex;
       align-items: center;
@@ -787,12 +786,12 @@
     .sun-toggle:active { transform: scale(0.95); }
     @media (max-width: 680px) {
       .hero-inner, .wrap { padding: 0 20px; }
-      .hero { padding: 48px 0 40px; }
+      .hero { padding: 48px 0 0; }
       .hero-inner { grid-template-columns: 1fr; gap: 28px; }
       .hero-photo-col { order: -1; margin-top: 0; flex-direction: row; align-items: center; gap: 16px; }
       .hero-avatar { width: 72px; height: 72px; }
       .hero-cv-link { margin-left: 0; }
-      section { padding: 32px 0; }
+      section { padding: 40px 0 0; }
       .projects-grid { grid-template-columns: 1fr; }
       .project-card:last-child:nth-child(odd) { grid-column: auto; }
       .nda-shots { grid-template-columns: 1fr; }
