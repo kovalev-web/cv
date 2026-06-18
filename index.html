@@ -778,38 +778,29 @@
     [data-theme="dark"] .avatar-fallback span { color: rgba(255,255,255,0.3); }
     [data-theme="dark"] .lock-icon span { color: rgba(255,255,255,0.3); }
     .side-card {
-      display: block;
+      display: flex;
+      align-items: stretch;
       background: #0a0a0a;
       border-radius: 16px;
       overflow: hidden;
       text-decoration: none;
       transition: opacity .15s;
+      min-height: 260px;
     }
     .side-card:hover { opacity: .88; }
-    .side-card-thumb {
-      width: 100%;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      display: block;
-    }
-    .side-card-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-    .side-card-footer {
+    .side-card-body {
+      flex: 0 0 240px;
+      padding: 28px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
-      padding: 16px 20px;
-      gap: 16px;
     }
-    .side-card-meta { display: flex; flex-direction: column; gap: 2px; }
+    .side-card-meta { display: flex; flex-direction: column; gap: 6px; }
     .side-card-name {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.15px;
+      font-size: 22px;
+      font-weight: 540;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
       color: #fff;
     }
     .side-card-tag {
@@ -817,7 +808,7 @@
       font-size: 10px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.35);
     }
     .side-card-link {
       font-family: var(--mono);
@@ -828,7 +819,16 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      flex-shrink: 0;
+    }
+    .side-card-thumb {
+      flex: 1;
+      overflow: hidden;
+    }
+    .side-card-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
     }
     .sun-toggle {
       cursor: pointer;
@@ -977,12 +977,7 @@
     <section class="sec-side">
       <span class="mono-label">Side Project</span>
       <a class="side-card" href="https://www.questtick.com" target="_blank" rel="noopener">
-        <div class="side-card-thumb">
-          <img src="proj-questtick.jpg" alt="Questtick — Altcoin Pump Monitor"
-            width="3456" height="1660" decoding="async" loading="lazy"
-            onerror="this.parentElement.style.background='#1a1a1a';">
-        </div>
-        <div class="side-card-footer">
+        <div class="side-card-body">
           <div class="side-card-meta">
             <span class="side-card-name">Questtick</span>
             <span class="side-card-tag">Altcoin Pump Monitor · Live</span>
@@ -991,6 +986,11 @@
             questtick.com
             <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </span>
+        </div>
+        <div class="side-card-thumb">
+          <img src="proj-questtick.jpg" alt="Questtick — Altcoin Pump Monitor"
+            width="1772" height="1548" decoding="async" loading="lazy"
+            onerror="this.parentElement.style.background='#1a1a1a';">
         </div>
       </a>
     </section>
