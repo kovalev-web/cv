@@ -15,7 +15,7 @@ function stickyCopy(btn) {
 
 /* ─── Theme ─── */
 if (!localStorage.getItem('theme')) {
-  localStorage.setItem('theme', 'dark');
+  localStorage.setItem('theme', 'light');
 }
 function toggleTheme() {
   const html = document.documentElement;
