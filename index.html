@@ -790,11 +790,8 @@
       border: 1px solid rgba(0,0,0,.08);
       border-radius: 20px;
       overflow: hidden;
-      text-decoration: none;
-      transition: opacity .15s;
       height: 300px;
     }
-    .side-card:hover { opacity: .88; }
     .side-card-body {
       flex: 0 0 220px;
       padding: 20px;
@@ -993,22 +990,22 @@
     <!-- ══ SIDE PROJECT ══ -->
     <section class="sec-side">
       <span class="mono-label">Side Project</span>
-      <a class="side-card" href="https://www.questtick.com" target="_blank" rel="noopener">
+      <div class="side-card">
         <div class="side-card-body">
           <div class="side-card-meta">
             <span class="side-card-name">Questtick</span>
             <span class="side-card-tag">Altcoin Pump Monitor · Live</span>
           </div>
-          <span class="side-card-link">
+          <a class="side-card-link" href="https://www.questtick.com" target="_blank" rel="noopener">
             questtick.com
             <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </span>
+          </a>
         </div>
         <div class="side-card-thumb">
           <img class="thumb-light" src="proj-questtick-light.jpg" alt="Questtick — Altcoin Pump Monitor" width="768" height="706" decoding="async" loading="lazy">
           <img class="thumb-dark" src="proj-questtick-dark.jpg" alt="Questtick — Altcoin Pump Monitor" width="768" height="706" decoding="async" loading="lazy">
         </div>
-      </a>
+      </div>
     </section>
 
     <!-- ══ WORK EXPERIENCE ══ -->
