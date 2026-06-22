@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dmitrii Kovalev — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: 'Space Mono', monospace;
+    background: #0d0d0d;
+    color: #f0f0f0;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .gate-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .gate-input-row {
+    display: flex;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .gate-input-row:focus-within {
+    border-color: rgba(255,255,255,0.35);
+  }
+  .gate-input-row.error {
+    border-color: rgba(255,80,80,0.6);
+    animation: shake .25s ease;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  #pwd {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #f0f0f0;
+    padding: 12px 16px;
+    letter-spacing: 2px;
+  }
+  #pwd::placeholder { color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+  #submit {
+    background: none;
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding: 12px 16px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.4);
+    transition: color .15s;
+    display: flex;
+    align-items: center;
+  }
+  #submit:hover { color: #f0f0f0; }
+</style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <div class="gate">
+    <span class="gate-label">Dmitrii Kovalev — CV</span>
+    <div class="gate-input-row" id="row">
+      <input id="pwd" type="password" placeholder="password" autocomplete="off" />
+      <button id="submit" onclick="check()">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('pwd').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+    });
+    function check() {
+      const val = document.getElementById('pwd').value;
+      if (val === 'allright') {
+        const a = document.createElement('a');
+        a.href = '/dmitrii_kovalev.pdf';
+        a.download = 'dmitrii_kovalev.pdf';
+        a.click();
+      } else {
+        const row = document.getElementById('row');
+        row.classList.remove('error');
+        void row.offsetWidth;
+        row.classList.add('error');
+        document.getElementById('pwd').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
