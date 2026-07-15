@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>(function(){var t=localStorage.getItem("theme");if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}})();</script>
   <title>Trade Scope Platform — Dmitrii</title>
-  <meta name="description" content="UX/UI case study: venture investment portfolio management CRM with data integration and analytics." />
+  <meta name="description" content="UX/UI case study: unifying scattered crypto and stock portfolios into one venture-investment platform with live broker data, wallets, and reporting." />
   <link rel="canonical" href="https://www.fraimye.com/projects/trade-scope/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.fraimye.com/projects/trade-scope/" />
   <meta property="og:title" content="Trade Scope Platform — Dmitrii" />
-  <meta property="og:description" content="UX/UI case study: venture investment portfolio management CRM with data integration and analytics." />
+  <meta property="og:description" content="UX/UI case study: unifying scattered crypto and stock portfolios into one venture-investment platform with live broker data, wallets, and reporting." />
   <meta property="og:image" content="https://www.fraimye.com/proj-trade-scope.webp" />
   <meta property="og:image:width" content="2048" />
   <meta property="og:image:height" content="1328" />
@@ -48,11 +48,25 @@
       text-transform: uppercase; color: rgba(0,0,0,0.6);
       text-decoration: none; transition: color .12s; margin-bottom: 32px;
     }
-    .proj-header { margin-bottom: 28px; }
+    .proj-header { margin-bottom: 20px; }
     .proj-title {
       font-size: 36px; font-weight: 520; letter-spacing: -0.5px;
       line-height: 1.15; margin-bottom: 0;
     }
+
+    /* ─── Meta strip: role / platform / focus ─── */
+    .proj-meta {
+      display: flex; flex-wrap: wrap; gap: 28px;
+      margin: 20px 0 32px; padding-top: 20px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .proj-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .proj-meta-label {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.5px;
+      text-transform: uppercase; color: rgba(0,0,0,0.4);
+    }
+    .proj-meta-value { font-size: 14px; font-weight: 450; color: var(--black); }
+
     .proj-img {
       width: 100%; border-radius: 10px; overflow: hidden;
       background: transparent; margin-bottom: 8px;
@@ -72,9 +86,18 @@
       font-size: 22px; font-weight: 500; letter-spacing: -0.3px;
       color: var(--black); margin-bottom: 10px; margin-top: 32px;
     }
+    .proj-section-eyebrow {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px;
+      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      display: block; margin-top: 40px; margin-bottom: 6px;
+    }
     .proj-text {
       font-size: 16px; font-weight: 300; line-height: 1.75;
       color: rgba(0,0,0,0.6); max-width: 720px; margin-bottom: 24px;
+    }
+    .proj-lead {
+      font-size: 19px; font-weight: 340; line-height: 1.6;
+      color: rgba(0,0,0,0.72); max-width: 680px; margin-bottom: 8px;
     }
     .proj-goals {
       list-style: none; display: flex; flex-direction: column; gap: 7px;
@@ -94,6 +117,28 @@
       font-weight: 500; color: var(--black);
     }
     .proj-spacer { height: 24px; }
+
+    /* ─── Pull quote / process callout ─── */
+    .proj-quote {
+      border-left: 2px solid rgba(0,0,0,0.15);
+      padding: 4px 0 4px 20px; margin: 8px 0 32px;
+      max-width: 640px;
+    }
+    .proj-quote p {
+      font-size: 17px; font-weight: 340; font-style: italic;
+      line-height: 1.6; color: rgba(0,0,0,0.75);
+    }
+
+    /* ─── Two-up image grid for related steps ─── */
+    .proj-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-bottom: 8px;
+    }
+    .proj-grid-2 .proj-img { margin-bottom: 0; }
+    @media (max-width: 680px) {
+      .proj-grid-2 { grid-template-columns: 1fr; }
+    }
+
     footer {
       background: var(--white); border-top: 1px solid rgba(0,0,0,.08);
       padding: 36px 0; margin-top: 32px;
@@ -104,10 +149,18 @@
     }
     @media (max-width: 680px) {
       .proj-section-title { font-size: 18px; }
+      .proj-lead { font-size: 17px; }
     }
     [data-theme="dark"] .proj-goals-num { color: rgba(255,255,255,0.25); }
     [data-theme="dark"] .proj-goals-text { color: rgba(255,255,255,0.65); }
     [data-theme="dark"] .proj-goals-text strong { color: #f0f0f0; }
+    [data-theme="dark"] .proj-meta { border-top-color: rgba(255,255,255,0.1); }
+    [data-theme="dark"] .proj-meta-label { color: rgba(255,255,255,0.4); }
+    [data-theme="dark"] .proj-meta-value { color: #f0f0f0; }
+    [data-theme="dark"] .proj-section-eyebrow { color: rgba(255,255,255,0.35); }
+    [data-theme="dark"] .proj-lead { color: rgba(255,255,255,0.75); }
+    [data-theme="dark"] .proj-quote { border-left-color: rgba(255,255,255,0.18); }
+    [data-theme="dark"] .proj-quote p { color: rgba(255,255,255,0.8); }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -153,9 +206,24 @@
         <h1 class="proj-title">Trade Scope Platform</h1>
       </header>
 
+      <div class="proj-meta">
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Role</span>
+          <span class="proj-meta-value">Product / UX-UI Design</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Platform</span>
+          <span class="proj-meta-value">Web &amp; Mobile</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Focus</span>
+          <span class="proj-meta-value">Venture portfolio analytics</span>
+        </div>
+      </div>
+
       <!-- img-2 -->
       <div class="proj-img">
-        <img src="img-2.webp" alt="Trade Scope"
+        <img src="img-2.webp" alt="Trade Scope dashboard shown on a mobile phone"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1515" height="920" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
@@ -165,12 +233,16 @@
 
       <div class="proj-spacer"></div>
 
+      <!-- Lead / problem framing -->
+      <p class="proj-lead">A venture investor's portfolio rarely lives in one place. Crypto sits in Binance, positions sit with a broker, and the rest lives in a spreadsheet nobody trusts. Trade Scope pulls all of it into a single, calm interface — so tracking performance stops being a second job.</p>
+      <p class="proj-text">The brief was to design a CRM-style platform for venture and crypto investors who manage several wallets and strategies at once. It had to connect directly to exchanges and brokers, stay legible at a glance, and still hold up when someone needs to dig into a single trade at 2am.</p>
+
       <!-- Goals -->
       <h2 class="proj-section-title">Goals of the Platform</h2>
       <ol class="proj-goals">
         <li>
           <span class="proj-goals-num">01</span>
-          <span class="proj-goals-text"><strong>Simplified Portfolio Management:</strong> Centralizes management of stocks, cryptocurrencies, and other assets in one platform.</span>
+          <span class="proj-goals-text"><strong>Simplified Portfolio Management:</strong> Centralizes stocks, cryptocurrencies, and other assets in one platform instead of five tabs.</span>
         </li>
         <li>
           <span class="proj-goals-num">02</span>
@@ -178,50 +250,55 @@
         </li>
         <li>
           <span class="proj-goals-num">03</span>
-          <span class="proj-goals-text"><strong>Actionable Insights:</strong> Provides real-time metrics, historical trends, and AI-driven forecasts.</span>
+          <span class="proj-goals-text"><strong>Actionable Insights:</strong> Real-time metrics, historical trends, and AI-driven forecasts, not just raw numbers.</span>
         </li>
         <li>
           <span class="proj-goals-num">04</span>
-          <span class="proj-goals-text"><strong>Customizable User Experience:</strong> Allows creation of personalized wallets and dashboards tailored to strategies.</span>
+          <span class="proj-goals-text"><strong>Customizable User Experience:</strong> Personalized wallets and dashboards tailored to each strategy — long-term, scalping, intraday.</span>
         </li>
         <li>
           <span class="proj-goals-num">05</span>
-          <span class="proj-goals-text"><strong>Secure API Connections:</strong> Enables easy integration with brokers, with advanced access controls and authentication.</span>
+          <span class="proj-goals-text"><strong>Secure API Connections:</strong> Broker integration with scoped access (read-only vs. trading) and IP restrictions.</span>
         </li>
         <li>
           <span class="proj-goals-num">06</span>
-          <span class="proj-goals-text"><strong>Collaboration & Sharing:</strong> Facilitates portfolio sharing and real-time updates among teams and stakeholders.</span>
+          <span class="proj-goals-text"><strong>Collaboration &amp; Sharing:</strong> Portfolio sharing and real-time updates among teams and stakeholders.</span>
         </li>
       </ol>
 
-      <!-- Description -->
-      <p class="proj-text">To develop an intuitive and efficient CRM, Trade Scope CRM, designed for streamlined portfolio management and analytics in the venture investment market. The platform integrates data, offers actionable insights, and provides a customizable interface for users to optimize their strategies and decision-making.</p>
+      <div class="proj-spacer"></div>
+
+      <!-- Flow diagram -->
+      <span class="proj-section-eyebrow">Process</span>
+      <h2 class="proj-section-title">Mapping the Flow First</h2>
+      <p class="proj-text">Before touching a single screen, I mapped how a user actually moves through the product: sign up, land on the dashboard, connect an exchange, spin up a wallet per strategy, then pull a report out of it. That flow became the backbone for every navigation decision that followed — it's the reason "create a wallet" and "manage a wallet" never got tangled into one confusing screen.</p>
 
       <!-- img-3 -->
       <div class="proj-img">
-        <img src="img-3.webp" alt="Trade Scope"
+        <img src="img-3.webp" alt="User flow diagram: sign up, dashboard, API connections, wallets, and reporting"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="1094" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-3.webp</span>
         </div>
       </div>
+      <p class="proj-caption">Early flow map: onboarding branches into a dashboard hub, which fans out to notifications, API connections, wallets, and reporting — with the Trading Academy and community as parallel, always-reachable exits.</p>
 
       <div class="proj-spacer"></div>
 
-      <!-- Sign In -->
-      <h2 class="proj-section-title">Sign In</h2>
+      <!-- Sign Up -->
+      <h2 class="proj-section-title">Sign Up</h2>
 
       <!-- img-4 -->
       <div class="proj-img">
-        <img src="img-4.webp" alt="Sign In"
+        <img src="img-4.webp" alt="Sign up screen with registration form and dashboard preview"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="960" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-4.webp</span>
         </div>
       </div>
-      <p class="proj-caption">A clean and intuitive login screen. Enter your credentials to quickly access the platform and get started without distractions.</p>
+      <p class="proj-caption">A short registration form paired with a preview of the dashboard the user is about to unlock — the product sells itself before the account even exists.</p>
 
       <!-- Dashboard Overview -->
       <h2 class="proj-section-title">Dashboard Overview</h2>
@@ -235,115 +312,128 @@
           <span>img-5.webp</span>
         </div>
       </div>
-      <p class="proj-caption">A comprehensive snapshot of key metrics and data visualizations to monitor portfolio performance at a glance.</p>
+      <p class="proj-caption">One screen, four wallets, no scrolling to find out if you're up or down today. A donut for allocation, a line for trend, a table for the trades that actually moved the needle.</p>
 
-      <!-- Generate API Key -->
-      <h2 class="proj-section-title">Generate API Key</h2>
-
-      <!-- img-6 -->
-      <div class="proj-img">
-        <img src="img-6.webp" alt="Generate API Key"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="943" loading="lazy" decoding="async" />
-        <div class="proj-img-placeholder" style="display:none;">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-          <span>img-6.webp</span>
-        </div>
+      <div class="proj-quote">
+        <p>The hardest constraint wasn't fitting data on screen — it was deciding what earned a place on it. Every wallet strategy has its own rhythm; the dashboard had to respect that instead of averaging it away.</p>
       </div>
-      <p class="proj-caption">Create a new API key by naming it, selecting permissions (read-only or trading access), and optionally adding an IP address for security.</p>
-
-      <!-- Verify and Connect -->
-      <h2 class="proj-section-title">Verify and Connect to the Platform</h2>
-
-      <!-- img-7 -->
-      <div class="proj-img">
-        <img src="img-7.webp" alt="Verify and Connect"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="943" loading="lazy" decoding="async" />
-        <div class="proj-img-placeholder" style="display:none;">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-          <span>img-7.webp</span>
-        </div>
-      </div>
-      <p class="proj-caption">1) Enter the verification code generated by your authenticator app. Save the API key and securely store the secret key, as it's shown only once. 2) Use your saved API key and secret key to connect your trading platform or wallet to Trade Scope and start synchronizing your data.</p>
-
-      <!-- img-8 -->
-      <div class="proj-img">
-        <img src="img-8.webp" alt="Trade Scope"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="910" loading="lazy" decoding="async" />
-        <div class="proj-img-placeholder" style="display:none;">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-          <span>img-8.webp</span>
-        </div>
-      </div>
-
-      <!-- img-9 -->
-      <div class="proj-img">
-        <img src="img-9.webp" alt="Trade Scope"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="920" loading="lazy" decoding="async" />
-        <div class="proj-img-placeholder" style="display:none;">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-          <span>img-9.webp</span>
-        </div>
-      </div>
-
-      <!-- img-10 -->
-      <div class="proj-img">
-        <img src="img-10.webp" alt="Trade Scope"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="1036" loading="lazy" decoding="async" />
-        <div class="proj-img-placeholder" style="display:none;">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-          <span>img-10.webp</span>
-        </div>
-      </div>
-
-      <div class="proj-spacer"></div>
 
       <!-- API Connections -->
       <h2 class="proj-section-title">API Connections</h2>
 
       <!-- img-11 -->
       <div class="proj-img">
-        <img src="img-11.webp" alt="API Connections"
+        <img src="img-11.webp" alt="API connections hub listing exchanges and existing API keys"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="943" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-11.webp</span>
         </div>
       </div>
-      <p class="proj-caption">Easily link your trading accounts, generate API keys, and manage connections for seamless data syncing and trading.</p>
+      <p class="proj-caption">Entry point for every integration: pick an exchange (Binance, Coinbase, Kraken, KuCoin, Bybit), see every key already issued with its access level and creation date, and a plain-language "How does it work" panel for anyone connecting an API for the first time.</p>
+
+      <!-- Generate & secure the key -->
+      <h2 class="proj-section-title">Generate &amp; Secure an API Key</h2>
+
+      <!-- img-6 -->
+      <div class="proj-img">
+        <img src="img-6.webp" alt="Generate API keys screen with exchange tabs and existing keys list"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="943" loading="lazy" decoding="async" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-6.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Naming keys by purpose ("Trading Bot Key," "Main Binance Account") instead of leaving them anonymous — small detail, but it's what stops someone from revoking the wrong one at 2am.</p>
+
+      <!-- img-7 -->
+      <div class="proj-img">
+        <img src="img-7.webp" alt="Two-step API key creation: choosing access level, then the generated key and secret"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="943" loading="lazy" decoding="async" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-7.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Access is scoped before the key exists, not after: Read-only or Trading, with an optional IP lock. The secret key is shown once, with an explicit warning — never stored in a way the user can retrieve casually.</p>
+
+      <div class="proj-spacer"></div>
+
+      <!-- Create a Wallet -->
+      <span class="proj-section-eyebrow">Web + Mobile parity</span>
+      <h2 class="proj-section-title">Create a Wallet</h2>
+      <p class="proj-text">A "wallet" here isn't a crypto address — it's a strategy container: Long-term, Scalping, Intraday, whatever the investor is running. Creating one takes the same two-tier pattern as the API key screen (basic settings, then advanced), so the product only teaches this pattern once.</p>
+
+      <!-- img-8 -->
+      <div class="proj-img">
+        <img src="img-8.webp" alt="New wallet setup form with basic and advanced settings"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="910" loading="lazy" decoding="async" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-8.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Name, type, category tag, and currency up front; color, spend limits, and API linking tucked under "Advanced" so a first-time user isn't blocked by decisions they don't have yet.</p>
+
+      <!-- img-9 -->
+      <div class="proj-img">
+        <img src="img-9.webp" alt="Mobile screens: reporting, create wallet form, and wallet created confirmation"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="920" loading="lazy" decoding="async" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-9.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">The same wallet flow, unmodified on mobile — because a strategy idea doesn't wait for a desktop.</p>
+
+      <!-- img-10 -->
+      <div class="proj-img">
+        <img src="img-10.webp" alt="Wallet created confirmation with next-step shortcuts"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="1036" loading="lazy" decoding="async" />
+        <div class="proj-img-placeholder" style="display:none;">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>img-10.webp</span>
+        </div>
+      </div>
+      <p class="proj-caption">Confirmation doubles as a next step: edit the wallet, connect an API, or jump straight to the dashboard — no dead end after the "success" moment.</p>
+
+      <div class="proj-spacer"></div>
 
       <!-- Wallet Management -->
       <h2 class="proj-section-title">Wallet Management</h2>
 
       <!-- img-12 -->
       <div class="proj-img">
-        <img src="img-12.webp" alt="Wallet Management"
+        <img src="img-12.webp" alt="Per-wallet profit summary cards"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="268" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-12.webp</span>
         </div>
       </div>
+      <p class="proj-caption">Every wallet gets its own color and its own "today" — a Scalping wallet up 1% reads completely differently from a Long-term wallet up 1%, so they're never compared on the same axis.</p>
 
       <!-- img-13 -->
       <div class="proj-img">
-        <img src="img-13.webp" alt="Wallet Management"
+        <img src="img-13.webp" alt="Wallet detail view with balance, allocation chart, and open positions"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="920" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-13.webp</span>
         </div>
       </div>
-      <p class="proj-caption">Organize and track your wallets by strategy or asset type. Easily switch between wallets to view specific data.</p>
+      <p class="proj-caption">Drilling into one wallet: allocation, trend, and every open position with its stop-loss / take-profit — plus a sidebar for exporting and reading ROI without leaving the page.</p>
 
       <!-- img-14 -->
       <div class="proj-img">
-        <img src="img-14.webp" alt="Wallet Management"
+        <img src="img-14.webp" alt="Side-by-side comparison of two wallets"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1616" height="894" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-14.webp</span>
         </div>
       </div>
+      <p class="proj-caption">Two wallets, side by side, same layout mirrored left and right — the question "which strategy is actually working?" gets a visual answer instead of a mental one.</p>
 
       <div class="proj-spacer"></div>
 
@@ -359,17 +449,24 @@
           <span>img-15.webp</span>
         </div>
       </div>
-      <p class="proj-caption">A customizable report builder that allows you to filter, select columns, and generate detailed insights for performance tracking. Seamlessly export your trading data in CSV, Excel, or PDF formats for further analysis or record-keeping.</p>
+      <p class="proj-caption">Filter by date, wallet, and condition; pick exactly which columns matter (wallet details, asset details, performance); export to CSV, Excel, or PDF. Built for the investor who needs to hand numbers to an accountant, not just look at them.</p>
 
       <!-- img-16 -->
       <div class="proj-img">
-        <img src="img-16.webp" alt="Reporting Tool"
+        <img src="img-16.webp" alt="Mobile reporting and navigation menu"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="1440" height="1036" loading="lazy" decoding="async" />
         <div class="proj-img-placeholder" style="display:none;">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3 16l5-5 4 4 3-3 6 6"/></svg>
           <span>img-16.webp</span>
         </div>
       </div>
+      <p class="proj-caption">The full navigation — Reporting, Wallets, API connections, Settings — collapses into one mobile menu without losing a single wallet or shortcut from the desktop version.</p>
+
+      <div class="proj-spacer"></div>
+
+      <span class="proj-section-eyebrow">Reflection</span>
+      <h2 class="proj-section-title">What Held It Together</h2>
+      <p class="proj-text">Mapping the flow before the screens is what kept "create a wallet" from bleeding into "manage a wallet," and what made the mobile screens a genuine port of the desktop product rather than a stripped-down cousin. In a domain this data-dense, the interesting design problem was never how to fit more on screen — it was knowing what to leave off it.</p>
 
     </div>
   </div>
